@@ -4,7 +4,6 @@ import net.AndyInit.TemptingTrinkets.Tempting_Trinkets;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,7 +16,7 @@ public class Tempting_TrinketsCreativeModeTab {
     @SubscribeEvent
     public static void RregisterCreativeModeTabs(CreativeModeTabEvent.Register event){
         Tempting_Trinkets_Tab = event.registerCreativeModeTab(new ResourceLocation(Tempting_Trinkets.MOD_ID, "tempting_trinkets_tab"),
-                builder -> builder.icon(() -> new ItemStack(ItemBase.Ring_Of_Neutral_Buoyancy.get()))
+                builder -> builder.icon(() -> new ItemStack(ModItems.Ring_Of_Neutral_Buoyancy.get()))
                         .title(Component.translatable("creativemodetab.tempting_trinkets_tab")));
     }
 }

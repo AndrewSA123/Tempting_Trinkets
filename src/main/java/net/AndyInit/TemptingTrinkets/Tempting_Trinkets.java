@@ -1,10 +1,8 @@
 package net.AndyInit.TemptingTrinkets;
 
 import com.mojang.logging.LogUtils;
-import net.AndyInit.TemptingTrinkets.item.ItemBase;
+import net.AndyInit.TemptingTrinkets.item.ModItems;
 import net.AndyInit.TemptingTrinkets.item.Tempting_TrinketsCreativeModeTab;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -29,7 +27,7 @@ public class Tempting_Trinkets
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ItemBase.register(modEventBus);
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
@@ -44,7 +42,7 @@ public class Tempting_Trinkets
 
     private void addCreative(CreativeModeTabEvent.BuildContents event){
         if(event.getTab() == Tempting_TrinketsCreativeModeTab.Tempting_Trinkets_Tab){
-            event.accept(ItemBase.Ring_Of_Neutral_Buoyancy);
+            event.accept(ModItems.Ring_Of_Neutral_Buoyancy);
         }
     }
 
