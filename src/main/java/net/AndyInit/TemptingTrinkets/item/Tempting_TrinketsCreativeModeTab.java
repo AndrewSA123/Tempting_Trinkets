@@ -14,7 +14,7 @@ public class Tempting_TrinketsCreativeModeTab {
     public static CreativeModeTab Tempting_Trinkets_Tab;
 
     @SubscribeEvent
-    public static void RregisterCreativeModeTabs(CreativeModeTabEvent.Register event){
+    public static void RegisterCreativeModeTabs(CreativeModeTabEvent.Register event){
         Tempting_Trinkets_Tab = event.registerCreativeModeTab(new ResourceLocation(Tempting_Trinkets.MOD_ID, "tempting_trinkets_tab"),
                 builder -> builder.icon(() -> new ItemStack(ModItems.Ring_Of_Neutral_Buoyancy.get()))
                         .title(Component.translatable("creativemodetab.tempting_trinkets_tab")));

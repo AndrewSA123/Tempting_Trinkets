@@ -1,8 +1,11 @@
 package net.AndyInit.TemptingTrinkets;
 
 import com.mojang.logging.LogUtils;
+import net.AndyInit.TemptingTrinkets.entity.ModEntities;
+import net.AndyInit.TemptingTrinkets.entity.client.SirenRenderer;
 import net.AndyInit.TemptingTrinkets.item.ModItems;
 import net.AndyInit.TemptingTrinkets.item.Tempting_TrinketsCreativeModeTab;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -28,6 +31,7 @@ public class Tempting_Trinkets
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
@@ -60,6 +64,9 @@ public class Tempting_Trinkets
         {
             // Some client setup code
             LOGGER.info("Tempting Trinkets Initialising");
+
+            EntityRenderers.register(ModEntities.SIREN.get(), SirenRenderer::new);
         }
     }
+
 }
