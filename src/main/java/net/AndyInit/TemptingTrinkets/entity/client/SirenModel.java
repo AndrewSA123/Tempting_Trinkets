@@ -18,7 +18,7 @@ public class SirenModel extends GeoModel<Siren> {
 
     @Override
     public ResourceLocation getTextureResource(Siren animatable) {
-        return new ResourceLocation(Tempting_Trinkets.MOD_ID, "texture/entity/siren.png");
+        return new ResourceLocation(Tempting_Trinkets.MOD_ID, "textures/entity/siren.png");
     }
 
     @Override

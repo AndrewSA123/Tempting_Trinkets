@@ -33,12 +33,7 @@ public class Siren extends Monster implements GeoEntity {
                 .add(Attributes.MAX_HEALTH, 10)
                 .add(Attributes.ATTACK_DAMAGE, 1f)
                 .add(Attributes.ATTACK_SPEED, 2f)
-                .add(Attributes.MOVEMENT_SPEED, 1f).build();
-    }
-
-    @Override
-    public float getScale() {
-        return 2f;
+                .add(Attributes.MOVEMENT_SPEED, 0.2f).build();
     }
 
     @Override
@@ -60,6 +55,10 @@ public class Siren extends Monster implements GeoEntity {
     }
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+        if(this.isSwimming()){
+            tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.siren.swim", Animation.LoopType.LOOP));
+        }
+
         if(tAnimationState.isMoving()){
             tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.siren.walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;

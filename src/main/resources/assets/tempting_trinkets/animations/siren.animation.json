@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"siren.walk": {
+		"animation.siren.walk": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -33,7 +33,7 @@
 				}
 			}
 		},
-		"siren.idle": {
+		"animation.siren.idle": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {

@@ -16,7 +16,7 @@ public class ModEntities {
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Tempting_Trinkets.MOD_ID);
 
     public static final RegistryObject<EntityType<Siren>> SIREN = ENTITY_TYPES.register("siren",
-            () -> EntityType.Builder.of(Siren::new, MobCategory.CREATURE)
+            () -> EntityType.Builder.of(Siren::new, MobCategory.WATER_CREATURE)
                     .sized(2f, 2f)
             .build(new ResourceLocation(Tempting_Trinkets.MOD_ID, "siren").toString()));
 
