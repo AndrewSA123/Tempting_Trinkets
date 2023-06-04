@@ -1,0 +1,63 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"siren.walk": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"LowerLegs": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -12.5, 0]
+						},
+						"1.0": {
+							"vector": [0, 30, 0]
+						},
+						"2.0": {
+							"vector": [0, -12.5, 0]
+						}
+					}
+				},
+				"Tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -15, 0]
+						},
+						"1.0": {
+							"vector": [0, 10, 0]
+						},
+						"2.0": {
+							"vector": [0, -15, 0]
+						}
+					}
+				}
+			}
+		},
+		"siren.idle": {
+			"loop": true,
+			"animation_length": 4,
+			"bones": {
+				"Head": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 30, 0]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, -30, 0]
+						},
+						"3.0": {
+							"vector": [0, 0, 0]
+						},
+						"4.0": {
+							"vector": [0, 30, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}
