@@ -17,7 +17,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<Siren>> SIREN = ENTITY_TYPES.register("siren",
             () -> EntityType.Builder.of(Siren::new, MobCategory.WATER_CREATURE)
-                    .sized(2f, 2f)
+                    .sized(1f, 1f)
             .build(new ResourceLocation(Tempting_Trinkets.MOD_ID, "siren").toString()));
 
     public static void register(IEventBus eventBus){
