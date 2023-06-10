@@ -16,6 +16,9 @@ public class ModItems {
     public static final RegistryObject<Item> Ring_Of_Neutral_Buoyancy = ITEMS.register(ring_of_neutral_buoyancy.GetItemName(),
             () -> new ring_of_neutral_buoyancy(new Item.Properties()));
 
+    public static final RegistryObject<Item> SIREN_SPAWN_EGG = ITEMS.register("siren_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.SIREN, 0x1e1d1f, 0xf7f2fc, new Item.Properties()));
+
     public static void register(IEventBus bus){
         ITEMS.register(bus);
     }

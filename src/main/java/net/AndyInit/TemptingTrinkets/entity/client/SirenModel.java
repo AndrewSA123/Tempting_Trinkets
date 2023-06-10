@@ -28,7 +28,7 @@ public class SirenModel extends GeoModel<Siren> {
 
     @Override
     public void setCustomAnimations(Siren animatable, long instanceId, AnimationState<Siren> animationState) {
-        CoreGeoBone head = getAnimationProcessor().getBone("head");
+        CoreGeoBone head = getAnimationProcessor().getBone("Head");
 
         if(head != null){
             EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);

@@ -57,6 +57,12 @@ A mod without a direction, just a kitchen sink approach to trinkets and curios, 
     versionRange="[4.1.3,)" #mandatory
     ordering="NONE"
     side="BOTH"
+[[dependencies.tempting_trinkets]] #optional
+    modId="curios" #mandatory
+    mandatory=true #mandatory
+    versionRange="[1.19.4-5.1.5.3,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
 # Here's another dependency
 [[dependencies.tempting_trinkets]]
     modId="minecraft"
