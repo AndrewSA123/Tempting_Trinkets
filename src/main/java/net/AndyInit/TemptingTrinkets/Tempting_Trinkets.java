@@ -3,12 +3,13 @@ package net.AndyInit.TemptingTrinkets;
 import com.mojang.logging.LogUtils;
 import net.AndyInit.TemptingTrinkets.entity.ModEntities;
 import net.AndyInit.TemptingTrinkets.entity.client.SirenRenderer;
+import net.AndyInit.TemptingTrinkets.event.GenericEvents;
 import net.AndyInit.TemptingTrinkets.item.ModItems;
 import net.AndyInit.TemptingTrinkets.item.Tempting_TrinketsCreativeModeTab;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,17 +25,20 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 public class Tempting_Trinkets
 {
     public static final String MOD_ID = "tempting_trinkets";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Tempting_Trinkets()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        Tempting_TrinketsCreativeModeTab.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new GenericEvents());
 
         modEventBus.addListener(this::addCreative);
     }
@@ -44,8 +48,8 @@ public class Tempting_Trinkets
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("Ring").build());
     }
 
-    private void addCreative(CreativeModeTabEvent.BuildContents event){
-        if(event.getTab() == Tempting_TrinketsCreativeModeTab.Tempting_Trinkets_Tab){
+    private void addCreative(BuildCreativeModeTabContentsEvent event){
+        if(event.getTab() == Tempting_TrinketsCreativeModeTab.Tempting_Trinkets_Tab.get()){
             event.accept(ModItems.Ring_Of_Neutral_Buoyancy);
             event.accept(ModItems.SIREN_SPAWN_EGG);
         }
