@@ -7,6 +7,7 @@ import net.AndyInit.TemptingTrinkets.event.GenericEvents;
 import net.AndyInit.TemptingTrinkets.item.ModItems;
 import net.AndyInit.TemptingTrinkets.item.Tempting_TrinketsCreativeModeTab;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -45,7 +46,9 @@ public class Tempting_Trinkets
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("Ring").build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring")
+                .cosmetic()
+                .icon(new ResourceLocation("tempting_trinkets:slot/ring_slot")).build());
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event){

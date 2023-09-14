@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class Tempting_TrinketsCreativeModeTab {
 
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB = DeferredRegister.create(Registries.f_279569_, Tempting_Trinkets.MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Tempting_Trinkets.MOD_ID);
 
     public static RegistryObject<CreativeModeTab> Tempting_Trinkets_Tab = CREATIVE_MODE_TAB.register("tempting_trinkets_tab", () ->
             CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.Ring_Of_Neutral_Buoyancy.get()))

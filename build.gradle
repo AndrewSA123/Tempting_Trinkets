@@ -7,16 +7,14 @@ plugins {
 }
 
 version = '0.0.2-1.20.1'
-group = 'net.andyinit.temptingtrinkets' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'net.andyinit.temptingtrinkets'
 archivesBaseName = 'tempting_trinkets'
-def curiosVersion = '5.2.0-beta.3+1.20.1'
 
-// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'parchment', version: '2023.03.12-1.19.3'
+    mappings channel: 'parchment', version: "${parchmentVersion}-${minecraftVersion}"
     runs {
         client {
             workingDirectory project.file('run')
@@ -109,11 +107,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "tempting_trinkets",
-                "Specification-Vendor"    : "tempting_trinketssareus",
+                "Specification-Vendor"    : "tempting_trinkets",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "tempting_trinketssareus",
+                "Implementation-Vendor"   : "tempting_trinkets",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

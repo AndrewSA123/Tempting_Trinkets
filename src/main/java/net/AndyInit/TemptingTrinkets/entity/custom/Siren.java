@@ -117,8 +117,8 @@ public class Siren extends Monster implements GeoEntity {
 
     @Override
     public void updateSwimming() {
-        if (!this.getLevel().isClientSide) {
-            if (this.m_21515_() && this.isInWater() && this.wantsToSwim()) {
+        if (!this.level().isClientSide) {
+            if (this.isEffectiveAi() && this.isInWater() && this.wantsToSwim()) {
                 this.navigation = this.waterNavigation;
                 this.setSwimming(true);
             } else {
@@ -130,7 +130,6 @@ public class Siren extends Monster implements GeoEntity {
     }
 
     static class GoToHomeGoal extends MoveToBlockGoal{
-
         private final Siren _siren;
         private static final int searchRadius = 16;
 
@@ -141,7 +140,7 @@ public class Siren extends Monster implements GeoEntity {
 
         @Override
         public boolean canUse() {
-            return super.canUse() && !this._siren.getLevel().isDay() && this._siren.isInWater();
+            return super.canUse() && !this._siren.level().isDay() && this._siren.isInWater();
         }
 
         @Override
