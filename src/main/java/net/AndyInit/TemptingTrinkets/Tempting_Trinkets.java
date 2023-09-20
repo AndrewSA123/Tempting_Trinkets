@@ -54,6 +54,7 @@ public class Tempting_Trinkets
     private void addCreative(BuildCreativeModeTabContentsEvent event){
         if(event.getTab() == Tempting_TrinketsCreativeModeTab.Tempting_Trinkets_Tab.get()){
             event.accept(ModItems.Ring_Of_Neutral_Buoyancy);
+            event.accept(ModItems.Ring_Of_Fire);
             event.accept(ModItems.SIREN_SPAWN_EGG);
         }
     }

@@ -13,8 +13,11 @@ public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Tempting_Trinkets.MOD_ID);
 
-    public static final RegistryObject<Item> Ring_Of_Neutral_Buoyancy = ITEMS.register(ring_of_neutral_buoyancy.GetItemName(),
-            () -> new ring_of_neutral_buoyancy(new Item.Properties()));
+    public static final RegistryObject<Item> Ring_Of_Neutral_Buoyancy = ITEMS.register(RingOfNeutralBuoyancy.GetItemName(),
+            () -> new RingOfNeutralBuoyancy(new Item.Properties()));
+
+    public static final RegistryObject<Item> Ring_Of_Fire = ITEMS.register(RingOfFire.GetItemName(),
+            () -> new RingOfFire(new Item.Properties()));
 
     public static final RegistryObject<Item> SIREN_SPAWN_EGG = ITEMS.register("siren_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.SIREN, 0x1e1d1f, 0xf7f2fc, new Item.Properties()));

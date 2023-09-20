@@ -18,6 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ModItems.Ring_Of_Neutral_Buoyancy);
+        simpleItem(ModItems.Ring_Of_Fire);
         withExistingParent(ModItems.SIREN_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 

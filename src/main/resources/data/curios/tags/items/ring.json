@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "tempting_trinkets:ring_of_neutral_buoyancy"
+    "tempting_trinkets:ring_of_neutral_buoyancy",
+    "tempting_trinkets:ring_of_fire"
   ]
 }
