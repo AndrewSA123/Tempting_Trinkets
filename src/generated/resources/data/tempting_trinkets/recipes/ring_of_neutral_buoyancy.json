@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "minecraft:glow_berries"
+    },
+    "p": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "r": {
+      "item": "tempting_trinkets:ring_of_fire"
+    },
+    "t": {
+      "item": "minecraft:bone"
+    },
+    "u": {
+      "item": "minecraft:pumpkin_seeds"
+    },
+    "w": {
+      "item": "minecraft:melon_seeds"
+    }
+  },
+  "pattern": [
+    "pup",
+    "trt",
+    "bwb"
+  ],
+  "result": {
+    "item": "tempting_trinkets:ring_of_neutral_buoyancy"
+  },
+  "show_notification": true
+}
