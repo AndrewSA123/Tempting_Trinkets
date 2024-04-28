@@ -3,9 +3,10 @@ package net.AndyInit.TemptingTrinkets.datagen;
 import net.AndyInit.TemptingTrinkets.Tempting_Trinkets;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.function.Supplier;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -16,7 +17,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
     }
 
-    private void blockWithItem(RegistryObject<Block> block){
+    private void blockWithItem(Supplier<Block> block){
         simpleBlockWithItem(block.get(), cubeAll(block.get()));
     }
 }

@@ -1,14 +1,15 @@
 package net.AndyInit.TemptingTrinkets.datagen;
 
+import net.AndyInit.TemptingTrinkets.Tempting_Trinkets;
 import net.AndyInit.TemptingTrinkets.block.ModBlocks;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class ModBlockLootTableProvider  extends BlockLootSubProvider {
     protected ModBlockLootTableProvider() {
@@ -22,6 +23,6 @@ public class ModBlockLootTableProvider  extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return BuiltInRegistries.BLOCK.stream().filter(block -> BuiltInRegistries.BLOCK.getKey(block).getNamespace().equals(Tempting_Trinkets.MOD_ID)).toList();
     }
 }

@@ -7,20 +7,16 @@ import net.AndyInit.TemptingTrinkets.event.GenericEvents;
 import net.AndyInit.TemptingTrinkets.item.ModItems;
 import net.AndyInit.TemptingTrinkets.item.Tempting_TrinketsCreativeModeTab;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
-import top.theillusivec4.curios.api.SlotTypeMessage;
 
 @Mod(Tempting_Trinkets.MOD_ID)
 public class Tempting_Trinkets
@@ -30,7 +26,7 @@ public class Tempting_Trinkets
 
     public Tempting_Trinkets()
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus modEventBus = NeoForge.EVENT_BUS;
 
         Tempting_TrinketsCreativeModeTab.register(modEventBus);
 
@@ -38,24 +34,22 @@ public class Tempting_Trinkets
         ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new GenericEvents());
+        NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(new GenericEvents());
 
         modEventBus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring")
-                .cosmetic()
-                .icon(new ResourceLocation("tempting_trinkets:slot/ring_slot")).build());
+
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event){
         if(event.getTab() == Tempting_TrinketsCreativeModeTab.Tempting_Trinkets_Tab.get()){
-            event.accept(ModItems.Ring_Of_Neutral_Buoyancy);
-            event.accept(ModItems.Ring_Of_Fire);
-            event.accept(ModItems.SIREN_SPAWN_EGG);
+            event.accept(ModItems.Ring_Of_Neutral_Buoyancy.get());
+            event.accept(ModItems.Ring_Of_Fire.get());
+            event.accept(ModItems.SIREN_SPAWN_EGG.get());
         }
     }
 
