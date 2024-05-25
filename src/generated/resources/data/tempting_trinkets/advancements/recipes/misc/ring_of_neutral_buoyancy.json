@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tempting_trinkets:ring_of_fire"
-            ]
+            "items": "tempting_trinkets:ring_of_fire"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_ring_of_fire",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_ring_of_fire"
     ]
   ],
   "rewards": {
     "recipes": [
       "tempting_trinkets:ring_of_neutral_buoyancy"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

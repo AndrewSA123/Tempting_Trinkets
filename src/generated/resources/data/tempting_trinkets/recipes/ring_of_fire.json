@@ -12,7 +12,7 @@
     " # "
   ],
   "result": {
-    "item": "tempting_trinkets:ring_of_fire"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "tempting_trinkets:ring_of_fire"
+  }
 }
