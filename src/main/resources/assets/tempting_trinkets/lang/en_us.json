@@ -2,5 +2,6 @@
   "item.tempting_trinkets.ring_of_neutral_buoyancy" : "Ring Of Neutral Buoyancy",
   "creativemodetab.tempting_trinkets_tab": "Tempting Trinkets",
   "item.tempting_trinkets.siren_spawn_egg" : "Siren Egg",
-  "item.tempting_trinkets.ring_of_fire": "Ring Of Fire"
+  "item.tempting_trinkets.ring_of_fire": "Ring Of Fire",
+  "block.tempting_trinkets.golden_carrot_block": "Golden Carrot Block"
 }

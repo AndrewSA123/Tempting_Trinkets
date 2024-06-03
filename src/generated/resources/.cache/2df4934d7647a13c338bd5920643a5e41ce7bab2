@@ -1,0 +1,4 @@
+// 1.20.6	2024-06-04T00:07:54.2288008	Tags for minecraft:block mod id tempting_trinkets
+7ee2b21cedbbe69fbd45bf24c6c1f6c8ea4c31b4 data/minecraft/tags/blocks/mineable/pickaxe.json
+7ee2b21cedbbe69fbd45bf24c6c1f6c8ea4c31b4 data/minecraft/tags/blocks/needs_iron_tool.json
+a6eb67778aadae6db8d60c76f1ae7bde62daaaae data/tempting_trinkets/tags/blocks/carrot_blocks.json

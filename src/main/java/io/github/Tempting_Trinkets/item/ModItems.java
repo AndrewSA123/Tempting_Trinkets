@@ -2,6 +2,8 @@ package io.github.Tempting_Trinkets.item;
 
 import io.github.Tempting_Trinkets.TemptingTrinkets;
 import io.github.Tempting_Trinkets.entity.ModEntities;
+import io.github.Tempting_Trinkets.item.custom.RingOfFire;
+import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -13,10 +15,10 @@ public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.createItems(TemptingTrinkets.MODID);
 
-    public static final Supplier<Item> Ring_Of_Neutral_Buoyancy = ITEMS.register(RingOfNeutralBuoyancy.GetItemName(),
+    public static final Supplier<Item> Ring_Of_Neutral_Buoyancy = ITEMS.register(RingOfNeutralBuoyancy.GetName(),
             () -> new RingOfNeutralBuoyancy(new Item.Properties()));
 
-    public static final Supplier<Item> Ring_Of_Fire = ITEMS.register(RingOfFire.GetItemName(),
+    public static final Supplier<Item> Ring_Of_Fire = ITEMS.register(RingOfFire.GetName(),
             () -> new RingOfFire(new Item.Properties()));
 
     public static final Supplier<Item> SIREN_SPAWN_EGG = ITEMS.register("siren_spawn_egg",

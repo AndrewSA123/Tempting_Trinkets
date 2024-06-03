@@ -5,17 +5,24 @@ import io.github.Tempting_Trinkets.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TemptingTrinkets.MODID);
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+    public static final Supplier<Block> GOLDEN_CARROT_BLOCK = registerBlock(GoldenCarrotBlock.getBlockName(),
+            GoldenCarrotBlock::new,
+            BlockBehaviour.Properties.of());
+
+    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> func, BlockBehaviour.Properties props){
+        DeferredBlock<T> toReturn = BLOCKS.register(name, () -> func.apply(props));
         registerBlockItem(name, toReturn);
         return toReturn;
     }

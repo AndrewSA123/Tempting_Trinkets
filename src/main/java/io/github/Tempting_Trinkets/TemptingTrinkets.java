@@ -1,5 +1,6 @@
 package io.github.Tempting_Trinkets;
 
+import io.github.Tempting_Trinkets.block.ModBlocks;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -36,23 +37,13 @@ public class TemptingTrinkets
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-//    // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-//    public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
-
-//    // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-//    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
-//
-//    // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
-//    public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
-//            .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
-//
-
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public TemptingTrinkets(IEventBus modEventBus, ModContainer modContainer)
     {
         Tempting_TrinketsCreativeModeTab.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -87,6 +78,7 @@ public class TemptingTrinkets
             event.accept(ModItems.Ring_Of_Neutral_Buoyancy.get());
             event.accept(ModItems.Ring_Of_Fire.get());
             event.accept(ModItems.SIREN_SPAWN_EGG.get());
+            event.accept(ModBlocks.GOLDEN_CARROT_BLOCK.get());
         }
     }
 

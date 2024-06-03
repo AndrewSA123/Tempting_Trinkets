@@ -1,4 +1,4 @@
-package io.github.Tempting_Trinkets.item;
+package io.github.Tempting_Trinkets.item.custom;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -6,14 +6,9 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class RingOfFire extends Item implements ICurioItem {
-    private static String Name = "ring_of_fire";
 
     public RingOfFire(Properties pProperties) {
         super(pProperties);
-    }
-
-    public static String GetItemName(){
-        return Name;
     }
 
     @Override
@@ -24,5 +19,9 @@ public class RingOfFire extends Item implements ICurioItem {
     @Override
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;
+    }
+
+    public static String GetName() {
+        return "ring_of_fire";
     }
 }

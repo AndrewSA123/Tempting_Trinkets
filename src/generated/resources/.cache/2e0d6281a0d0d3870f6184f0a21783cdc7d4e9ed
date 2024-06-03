@@ -1,1 +1,4 @@
-// 1.20.6	2024-05-24T23:53:22.9073583	Block States: tempting_trinkets
+// 1.20.6	2024-06-04T00:07:54.2278009	Block States: tempting_trinkets
+9470ca0e5be330aeab062357177bb5168473e4da assets/tempting_trinkets/blockstates/golden_carrot_block.json
+9fb2c0e2c3af28e552af749fda831a8920c5385e assets/tempting_trinkets/models/block/golden_carrot_block.json
+d55eac5f55ea71e005dee6841d97a65faa1a3d4a assets/tempting_trinkets/models/item/golden_carrot_block.json
