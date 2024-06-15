@@ -3,6 +3,7 @@ package io.github.Tempting_Trinkets;
 import io.github.Tempting_Trinkets.block.ModBlocks;
 import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
 import io.github.Tempting_Trinkets.item.client.item_renderers.RingOfNeutralBuoyancyRenderer;
+import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -103,7 +104,7 @@ public class TemptingTrinkets
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
-            CuriosRendererRegistry.register(ModItems.Ring_Of_Neutral_Buoyancy.get(), () -> new RingOfNeutralBuoyancyRenderer(Minecraft.getInstance().getEntityModels().bakeLayer(RingOfNeutralBuoyancyModel.LAYER_LOCATION)));
+            CuriosRendererRegistry.register(ModItems.Ring_Of_Neutral_Buoyancy.get(), () -> new RingOfNeutralBuoyancyRenderer(Minecraft.getInstance().getEntityModels().bakeLayer(RingOfNeutralBuoyancyModel.LAYER_LOCATION), RingOfNeutralBuoyancy.GetTextureLocation()));
 
             EntityRenderers.register(ModEntities.SIREN.get(), SirenRenderer::new);
         }

@@ -1,28 +1,18 @@
 package io.github.Tempting_Trinkets.item.custom;
 
-import net.minecraft.client.model.HumanoidModel;
+import io.github.Tempting_Trinkets.TemptingTrinkets;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoItem;
-import software.bernie.geckolib.animatable.client.GeoRenderProvider;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.constant.DefaultAnimations;
-import software.bernie.geckolib.util.GeckoLibUtil;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import static net.neoforged.neoforge.common.NeoForgeMod.CREATIVE_FLIGHT;
 
@@ -33,6 +23,10 @@ public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
 
     public static String GetName() {
         return "ring_of_neutral_buoyancy";
+    }
+
+    public static ResourceLocation GetTextureLocation(){
+        return new ResourceLocation(TemptingTrinkets.MODID, "textures/curios/" + GetName() + ".png");
     }
 
     @Override
