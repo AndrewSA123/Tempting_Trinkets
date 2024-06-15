@@ -19,7 +19,9 @@ public class ModBlocks {
 
     public static final Supplier<Block> GOLDEN_CARROT_BLOCK = registerBlock(GoldenCarrotBlock.getBlockName(),
             GoldenCarrotBlock::new,
-            BlockBehaviour.Properties.of());
+            BlockBehaviour.Properties.of()
+                    .destroyTime(5f)
+                    .lightLevel(value -> 3));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> func, BlockBehaviour.Properties props){
         DeferredBlock<T> toReturn = BLOCKS.register(name, () -> func.apply(props));

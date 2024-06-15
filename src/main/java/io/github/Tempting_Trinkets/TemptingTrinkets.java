@@ -1,6 +1,8 @@
 package io.github.Tempting_Trinkets;
 
 import io.github.Tempting_Trinkets.block.ModBlocks;
+import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
+import io.github.Tempting_Trinkets.item.client.item_renderers.RingOfNeutralBuoyancyRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -24,6 +26,7 @@ import io.github.Tempting_Trinkets.entity.ModEntities;
 import io.github.Tempting_Trinkets.entity.client.SirenRenderer;
 import io.github.Tempting_Trinkets.item.ModItems;
 import io.github.Tempting_Trinkets.item.Tempting_TrinketsCreativeModeTab;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(TemptingTrinkets.MODID)
@@ -99,6 +102,8 @@ public class TemptingTrinkets
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+            CuriosRendererRegistry.register(ModItems.Ring_Of_Neutral_Buoyancy.get(), () -> new RingOfNeutralBuoyancyRenderer(Minecraft.getInstance().getEntityModels().bakeLayer(RingOfNeutralBuoyancyModel.LAYER_LOCATION)));
 
             EntityRenderers.register(ModEntities.SIREN.get(), SirenRenderer::new);
         }

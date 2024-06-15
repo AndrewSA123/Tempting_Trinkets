@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "tempting_trinkets:golden_carrot_block"
         }
       ],
       "rolls": 1.0

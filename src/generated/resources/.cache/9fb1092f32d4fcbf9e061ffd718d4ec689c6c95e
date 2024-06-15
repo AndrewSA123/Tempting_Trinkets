@@ -1,5 +1,9 @@
-// 1.20.6	2024-05-24T23:53:22.9093598	Recipes
+// 1.20.6	2024-06-08T01:24:05.2864526	Recipes
+81f0c700b7b6c05671800a500b96062eac56e5f0 data/minecraft/advancements/recipes/food/golden_carrot.json
+761ce12d3c146936567877d99b412dfcad2d50a6 data/minecraft/recipes/golden_carrot.json
+ddd189f15819f53fde18117c9937bab5e0dea409 data/tempting_trinkets/advancements/recipes/building_blocks/golden_carrot_block.json
 9a3b9988ce886c8d6d38ea11051e7a0d8715f306 data/tempting_trinkets/advancements/recipes/misc/ring_of_fire.json
 47aabbd570fb09f1ea95e184f7cc02ebeb099179 data/tempting_trinkets/advancements/recipes/misc/ring_of_neutral_buoyancy.json
+213692e9f065bd692a7db75d0a207aaced717013 data/tempting_trinkets/recipes/golden_carrot_block.json
 006b07f5683b42727f378855bde20e0be74c689a data/tempting_trinkets/recipes/ring_of_fire.json
 d44de474d1322ef2e191c2e37a25df4c6c33dce9 data/tempting_trinkets/recipes/ring_of_neutral_buoyancy.json

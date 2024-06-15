@@ -1,5 +1,7 @@
 package io.github.Tempting_Trinkets.datagen;
 
+import io.github.Tempting_Trinkets.block.GoldenCarrotBlock;
+import io.github.Tempting_Trinkets.block.ModBlocks;
 import io.github.Tempting_Trinkets.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -35,6 +37,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('b', Items.GLOW_BERRIES)
                 .define('w', Items.MELON_SEEDS)
                 .unlockedBy(getHasName(ModItems.Ring_Of_Fire.get()), has(ModItems.Ring_Of_Fire.get()))
+                .save(pWriter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GOLDEN_CARROT_BLOCK.get())
+                .requires(Items.GOLDEN_CARROT, 9)
+                .unlockedBy(getHasName(Items.GOLDEN_CARROT), has(Items.GOLDEN_CARROT))
+                .save(pWriter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.GOLDEN_CARROT, 9)
+                .requires(ModBlocks.GOLDEN_CARROT_BLOCK.get(), 1)
+                .unlockedBy(getHasName(Items.GOLDEN_CARROT), has(Items.GOLDEN_CARROT))
                 .save(pWriter);
     }
 }

@@ -1,6 +1,5 @@
 package io.github.Tempting_Trinkets.item.custom;
 
-import io.github.Tempting_Trinkets.item.client.RingOfNeutralBuoyancyRenderer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
@@ -27,12 +26,9 @@ import java.util.function.Consumer;
 
 import static net.neoforged.neoforge.common.NeoForgeMod.CREATIVE_FLIGHT;
 
-public class RingOfNeutralBuoyancy extends ArmorItem implements ICurioItem, GeoItem {
-
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    public RingOfNeutralBuoyancy(Properties pProperties) {
-        super(ArmorMaterials.DIAMOND, Type.HELMET , pProperties);
+public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
+    public RingOfNeutralBuoyancy() {
+        super(new Item.Properties());
     }
 
     public static String GetName() {
@@ -83,41 +79,5 @@ public class RingOfNeutralBuoyancy extends ArmorItem implements ICurioItem, GeoI
     @Override
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return false;
-    }
-
-    //GeckoLib Stuff
-
-    private PlayState predicate(AnimationState animationState){
-        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, 20, state -> {
-            state.getController().setAnimation(DefaultAnimations.IDLE);
-
-            return PlayState.CONTINUE;
-        }));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
-
-    @Override
-    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
-        consumer.accept(new GeoRenderProvider() {
-            private RingOfNeutralBuoyancyRenderer renderer;
-
-            @Override
-            public <T extends LivingEntity> HumanoidModel<?> getGeoArmorRenderer(@Nullable T livingEntity, ItemStack itemStack, @Nullable EquipmentSlot equipmentSlot, @Nullable HumanoidModel<T> original) {
-                if(renderer == null){
-                    this.renderer = new RingOfNeutralBuoyancyRenderer();
-                }
-                return this.renderer;
-            }
-        });
     }
 }

@@ -2,13 +2,14 @@ package io.github.Tempting_Trinkets.item.custom;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class RingOfFire extends Item implements ICurioItem {
 
-    public RingOfFire(Properties pProperties) {
-        super(pProperties);
+    public RingOfFire() {
+        super(new Item.Properties());
     }
 
     @Override
