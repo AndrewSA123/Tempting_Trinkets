@@ -15,10 +15,10 @@ public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(Registries.ENTITY_TYPE, TemptingTrinkets.MODID);
 
-    public static final Supplier<EntityType<Siren>> SIREN = ENTITY_TYPES.register("siren",
+    public static final Supplier<EntityType<Siren>> SIREN = ENTITY_TYPES.register(Siren.getEntityName(),
             () -> EntityType.Builder.of(Siren::new, MobCategory.WATER_CREATURE)
                     .sized(1f, 1f)
-            .build(new ResourceLocation(TemptingTrinkets.MODID, "siren").toString()));
+            .build(new ResourceLocation(TemptingTrinkets.MODID, Siren.getEntityName()).toString()));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

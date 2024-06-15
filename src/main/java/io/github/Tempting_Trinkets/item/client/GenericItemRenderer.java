@@ -1,10 +1,8 @@
-package io.github.Tempting_Trinkets.item.client.item_renderers;
+package io.github.Tempting_Trinkets.item.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -15,12 +13,12 @@ import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
-public class RingOfNeutralBuoyancyRenderer implements ICurioRenderer {
-    private final RingOfNeutralBuoyancyModel model;
+public class GenericItemRenderer<R extends EntityModel> implements ICurioRenderer {
+    private final R model;
     private final ResourceLocation resourceLocation;
 
-    public RingOfNeutralBuoyancyRenderer(ModelPart model, ResourceLocation textureLocation){
-        this.model = new RingOfNeutralBuoyancyModel(model);
+    public GenericItemRenderer(R model, ResourceLocation textureLocation){
+        this.model = model;
         this.resourceLocation = textureLocation;
     }
 

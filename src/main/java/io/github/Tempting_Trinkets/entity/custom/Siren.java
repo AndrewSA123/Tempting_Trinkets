@@ -45,7 +45,14 @@ public class Siren extends Monster implements GeoEntity {
 
     public void SetHome(int x, int y, int z){
         this.homeLocation = new BlockPos(x,y,z);
-        System.out.println(homeLocation);
+    }
+
+    public BlockPos GetHome(){
+        return this.homeLocation;
+    }
+
+    public static String getEntityName(){
+        return "siren";
     }
 
     public static AttributeSupplier setAttributes(){

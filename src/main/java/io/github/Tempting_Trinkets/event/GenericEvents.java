@@ -11,8 +11,8 @@ public class GenericEvents {
 
     @SubscribeEvent
     public static void entityJoinLevelEvent(EntityJoinLevelEvent event){
-        if(event.getEntity() instanceof Siren){
-            ((Siren) event.getEntity()).SetHome((int)event.getEntity().position().x, (int)event.getEntity().position().y, (int)event.getEntity().position().z);
+        if(event.getEntity() instanceof Siren siren){
+            siren.SetHome((int)siren.position().x, (int)siren.position().y, (int)siren.position().z);
         }
     }
 }
