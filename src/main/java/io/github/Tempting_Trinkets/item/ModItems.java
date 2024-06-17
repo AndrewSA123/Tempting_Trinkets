@@ -24,6 +24,9 @@ public class ModItems {
     public static final Supplier<Item> SIREN_SPAWN_EGG = ITEMS.register("siren_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.SIREN, 0x1e1d1f, 0xf7f2fc, new Item.Properties()));
 
+    public static final Supplier<Item> CARROT_WRAITH_SPAWN_EGG = ITEMS.register("carrot_wraith_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.CARROT_WRAITH, 0xc48b00, 0x9d6f00, new Item.Properties()));
+
     public static void register(IEventBus bus){
         ITEMS.register(bus);
     }

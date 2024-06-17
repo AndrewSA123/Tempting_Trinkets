@@ -1,6 +1,7 @@
 package io.github.Tempting_Trinkets.entity;
 
 import io.github.Tempting_Trinkets.TemptingTrinkets;
+import io.github.Tempting_Trinkets.entity.custom.CarrotWraith;
 import io.github.Tempting_Trinkets.entity.custom.Siren;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +20,11 @@ public class ModEntities {
             () -> EntityType.Builder.of(Siren::new, MobCategory.WATER_CREATURE)
                     .sized(1f, 1f)
             .build(new ResourceLocation(TemptingTrinkets.MODID, Siren.getEntityName()).toString()));
+
+    public static final Supplier<EntityType<CarrotWraith>> CARROT_WRAITH = ENTITY_TYPES.register(CarrotWraith.getEntityName(),
+            () -> EntityType.Builder.of(CarrotWraith::new, MobCategory.MONSTER)
+                    .sized(5f, 5f)
+                    .build(new ResourceLocation(TemptingTrinkets.MODID, CarrotWraith.getEntityName()).toString()));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

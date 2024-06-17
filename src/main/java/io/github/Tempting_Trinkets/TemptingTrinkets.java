@@ -1,6 +1,7 @@
 package io.github.Tempting_Trinkets;
 
 import io.github.Tempting_Trinkets.block.ModBlocks;
+import io.github.Tempting_Trinkets.entity.client.CarrotWraithRenderer;
 import io.github.Tempting_Trinkets.item.client.TTItemRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
@@ -64,6 +65,7 @@ public class TemptingTrinkets
             event.accept(ModItems.Ring_Of_Neutral_Buoyancy.get());
             event.accept(ModItems.Ring_Of_Fire.get());
             event.accept(ModItems.SIREN_SPAWN_EGG.get());
+            event.accept(ModItems.CARROT_WRAITH_SPAWN_EGG.get());
             event.accept(ModBlocks.GOLDEN_CARROT_BLOCK.get());
         }
     }
@@ -86,6 +88,7 @@ public class TemptingTrinkets
 
             TTItemRenderers.register();
             EntityRenderers.register(ModEntities.SIREN.get(), SirenRenderer::new);
+            EntityRenderers.register(ModEntities.CARROT_WRAITH.get(), CarrotWraithRenderer::new);
         }
     }
 }

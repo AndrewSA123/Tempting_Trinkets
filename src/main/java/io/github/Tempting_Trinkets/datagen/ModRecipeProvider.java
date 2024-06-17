@@ -1,11 +1,13 @@
 package io.github.Tempting_Trinkets.datagen;
 
+import io.github.Tempting_Trinkets.TemptingTrinkets;
 import io.github.Tempting_Trinkets.block.GoldenCarrotBlock;
 import io.github.Tempting_Trinkets.block.ModBlocks;
 import io.github.Tempting_Trinkets.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
@@ -48,5 +50,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.GOLDEN_CARROT_BLOCK.get(), 1)
                 .unlockedBy(getHasName(Items.GOLDEN_CARROT), has(Items.GOLDEN_CARROT))
                 .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, Items.GOLDEN_CARROT)
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .define('#', Items.GOLD_NUGGET)
+                .define('C', Items.CARROT)
+                .unlockedBy(getHasName(Items.CARROT), has(Items.CARROT))
+                .save(pWriter, new ResourceLocation(TemptingTrinkets.MODID, "golden_carrot"));
     }
 }

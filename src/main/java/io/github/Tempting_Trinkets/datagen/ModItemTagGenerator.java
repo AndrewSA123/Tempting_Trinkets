@@ -1,6 +1,7 @@
 package io.github.Tempting_Trinkets.datagen;
 
 import io.github.Tempting_Trinkets.TemptingTrinkets;
+import io.github.Tempting_Trinkets.item.ModItems;
 import io.github.Tempting_Trinkets.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -23,6 +24,11 @@ public class ModItemTagGenerator  extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(ModTags.Items.CARROT_ITEM).add(Items.GOLDEN_CARROT);
+        this.tag(ModTags.Items.CARROT_ITEM)
+                .add(Items.GOLDEN_CARROT)
+                .add(ModItems.SIREN_SPAWN_EGG.get())
+                .add(ModItems.CARROT_WRAITH_SPAWN_EGG.get())
+                .add(ModItems.Ring_Of_Fire.get())
+                .add(ModItems.Ring_Of_Neutral_Buoyancy.get());
     }
 }

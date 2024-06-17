@@ -20,6 +20,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(RingOfNeutralBuoyancy.GetName());
         simpleItem(RingOfFire.GetName());
         withExistingParent("siren_spawn_egg", mcLoc("item/template_spawn_egg"));
+        withExistingParent("carrot_wraith_spawn_egg", mcLoc("item/template_spawn_egg"));
     }
 
     private ItemModelBuilder simpleItem(String itemName){
