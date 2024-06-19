@@ -87,8 +87,9 @@ public class Siren extends Monster implements GeoEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.5f));
+        this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9, searchRange));
         this.goalSelector.addGoal(2, new Siren.GoToHomeGoal(this, 1f));
+        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.5f));
 
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));

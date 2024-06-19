@@ -1,5 +1,6 @@
 package io.github.Tempting_Trinkets.item.armour;
 
+import io.github.Tempting_Trinkets.TemptingTrinkets;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -51,7 +52,7 @@ public class ModArmourMaterials  {
 
         return Registry.registerForHolder(
                 BuiltInRegistries.ARMOR_MATERIAL,
-                new ResourceLocation(pName),
+                ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, pName),
                 new ArmorMaterial(enummap, pEnchantmentValue, pEquipSound, pRepairIngridient, pLayers, pToughness, pKnockbackResistance)
         );
     }

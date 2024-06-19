@@ -13,17 +13,17 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class SirenModel extends GeoModel<Siren> {
     @Override
     public ResourceLocation getModelResource(Siren animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "geo/siren.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "geo/siren.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Siren animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "textures/entity/siren.png");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/entity/siren.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Siren animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "animations/siren.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "animations/siren.animation.json");
     }
 
     @Override

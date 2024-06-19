@@ -25,8 +25,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     private ItemModelBuilder simpleItem(String itemName){
         return withExistingParent(itemName,
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(TemptingTrinkets.MODID, "item/" + itemName));
+                ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "item/" + itemName));
     }
 
     private ItemModelBuilder handheldItem(String itemName){

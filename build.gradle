@@ -10,8 +10,6 @@ plugins {
 version = mod_version
 group = mod_group_id
 
-def localProperties = new Properties()
-
 repositories {
     mavenCentral()
     mavenLocal()
@@ -92,10 +90,10 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    //implementation "net.minecraft:neoform_joined:${neoForm}"
+    implementation "net.minecraft:neoform_joined:${neoForm}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curiosVersion}"
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curiosVersion}:api"
-    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckoLibVersion}"
+    implementation "software.bernie.geckolib:geckolib-neoforge-${geckolib_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

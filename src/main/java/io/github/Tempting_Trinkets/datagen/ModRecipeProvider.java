@@ -58,6 +58,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('#', Items.GOLD_NUGGET)
                 .define('C', Items.CARROT)
                 .unlockedBy(getHasName(Items.CARROT), has(Items.CARROT))
-                .save(pWriter, new ResourceLocation(TemptingTrinkets.MODID, "golden_carrot"));
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "golden_carrot"));
     }
 }

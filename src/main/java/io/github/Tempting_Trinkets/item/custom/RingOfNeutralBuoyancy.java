@@ -26,7 +26,7 @@ public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
     }
 
     public static ResourceLocation GetTextureLocation(){
-        return new ResourceLocation(TemptingTrinkets.MODID, "textures/curios/" + GetName() + ".png");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/curios/" + GetName() + ".png");
     }
 
     @Override

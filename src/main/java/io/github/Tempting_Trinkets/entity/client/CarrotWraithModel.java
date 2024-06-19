@@ -8,16 +8,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class CarrotWraithModel extends GeoModel<CarrotWraith> {
     @Override
     public ResourceLocation getModelResource(CarrotWraith animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "geo/carrot_wraith.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "geo/carrot_wraith.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(CarrotWraith animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "textures/entity/carrot_wraith.png");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/entity/carrot_wraith.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(CarrotWraith animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "animations/carrot_wraith.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "animations/carrot_wraith.animation.json");
     }
 }

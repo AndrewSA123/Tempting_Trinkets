@@ -15,7 +15,7 @@ public class SirenRenderer extends GeoEntityRenderer<Siren> {
 
     @Override
     public ResourceLocation getTextureLocation(Siren animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "textures/entity/siren.png");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/entity/siren.png") ;
     }
 
     @Override

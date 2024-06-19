@@ -14,7 +14,7 @@ import net.minecraft.world.entity.Entity;
 
 public class RingOfNeutralBuoyancyModel<T extends Entity> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TemptingTrinkets.MODID, "textures/curios/" + RingOfNeutralBuoyancy.GetName() + ".png"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/curios/" + RingOfNeutralBuoyancy.GetName() + ".png"), "main");
 	private final ModelPart Ring;
 
 	public RingOfNeutralBuoyancyModel(ModelPart root) {
@@ -39,7 +39,7 @@ public class RingOfNeutralBuoyancyModel<T extends Entity> extends EntityModel<T>
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		Ring.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int alpha) {
+		Ring.render(poseStack, vertexConsumer, packedLight, packedOverlay);
 	}
 }

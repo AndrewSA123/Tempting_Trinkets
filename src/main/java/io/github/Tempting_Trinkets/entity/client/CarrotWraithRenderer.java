@@ -16,7 +16,7 @@ public class CarrotWraithRenderer extends GeoEntityRenderer<CarrotWraith> {
 
     @Override
     public ResourceLocation getTextureLocation(CarrotWraith animatable) {
-        return new ResourceLocation(TemptingTrinkets.MODID, "textures/entity/carrot_wraith.png");
+        return ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/entity/carrot_wraith.png");
     }
 
     @Override

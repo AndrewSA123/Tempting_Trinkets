@@ -27,7 +27,7 @@ public class GenericItemRenderer<R extends EntityModel> implements ICurioRendere
         matrixStack.pushPose();
 
         VertexConsumer vertexBuilder = renderTypeBuffer.getBuffer(RenderType.entityCutout(resourceLocation));
-        model.renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, 1,1,1,1);
+        model.renderToBuffer(matrixStack, vertexBuilder,1,1,1);
         matrixStack.popPose();
     }
 }

@@ -19,12 +19,12 @@ public class ModEntities {
     public static final Supplier<EntityType<Siren>> SIREN = ENTITY_TYPES.register(Siren.getEntityName(),
             () -> EntityType.Builder.of(Siren::new, MobCategory.WATER_CREATURE)
                     .sized(1f, 1f)
-            .build(new ResourceLocation(TemptingTrinkets.MODID, Siren.getEntityName()).toString()));
+                    .build(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, Siren.getEntityName()).toString()));
 
     public static final Supplier<EntityType<CarrotWraith>> CARROT_WRAITH = ENTITY_TYPES.register(CarrotWraith.getEntityName(),
             () -> EntityType.Builder.of(CarrotWraith::new, MobCategory.MONSTER)
-                    .sized(5f, 5f)
-                    .build(new ResourceLocation(TemptingTrinkets.MODID, CarrotWraith.getEntityName()).toString()));
+                    .sized(2f, 2.5f)
+                    .build(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, CarrotWraith.getEntityName()).toString()));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

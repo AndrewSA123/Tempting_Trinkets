@@ -13,7 +13,7 @@ public class ModTags {
         public static final TagKey<Block> CARROT_BLOCKS = tag("carrot_blocks");
 
         private static TagKey<Block> tag(String name){
-            return BlockTags.create(new ResourceLocation(TemptingTrinkets.MODID, name));
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, name));
         }
     }
 
@@ -21,7 +21,7 @@ public class ModTags {
         public static final TagKey<Item> CARROT_ITEM = tag("carrot_items");
 
         private static TagKey<Item> tag(String name){
-            return ItemTags.create(new ResourceLocation(TemptingTrinkets.MODID, name));
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, name));
         }
     }
 }
