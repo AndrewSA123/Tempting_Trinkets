@@ -18,9 +18,9 @@ repositories {
         url = 'https://repo.spongepowered.org/repository/maven-public/'
     }
     maven {
-        url = "https://maven.theillusivec4.top/"
+        url "https://cursemaven.com"
         content {
-            includeGroup "top.theillusivec4.curios"
+            includeGroup "curse.maven"
         }
     }
     maven {
@@ -42,7 +42,6 @@ minecraft {
 //    }
 }
 
-// Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
@@ -90,9 +89,8 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    implementation "net.minecraft:neoform_joined:${neoForm}"
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curiosVersion}"
-    compileOnly "top.theillusivec4.curios:curios-neoforge:${curiosVersion}:api"
+    runtimeOnly "curse.maven:adorned-1036809:5496606"
+    compileOnly "curse.maven:adorned-1036809:5496607"
     implementation "software.bernie.geckolib:geckolib-neoforge-${geckolib_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

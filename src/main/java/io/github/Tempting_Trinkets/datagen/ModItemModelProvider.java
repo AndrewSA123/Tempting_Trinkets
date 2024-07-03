@@ -5,7 +5,6 @@ import io.github.Tempting_Trinkets.item.custom.RingOfFire;
 import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -25,7 +24,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     private ItemModelBuilder simpleItem(String itemName){
         return withExistingParent(itemName,
-                ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "item/" + itemName)).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "item/" + itemName));
     }
 

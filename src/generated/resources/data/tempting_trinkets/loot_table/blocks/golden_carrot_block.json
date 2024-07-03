@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tempting_trinkets:golden_carrot_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tempting_trinkets:blocks/golden_carrot_block"
+}
