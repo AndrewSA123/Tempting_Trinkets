@@ -1,5 +1,5 @@
 {
-  "parent": "tempting_trinkets:item/ring_of_neutral_buoyancy",
+  "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "tempting_trinkets:item/ring_of_neutral_buoyancy"
   }

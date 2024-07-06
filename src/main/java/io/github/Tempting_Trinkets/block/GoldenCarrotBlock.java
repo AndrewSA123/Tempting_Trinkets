@@ -10,4 +10,6 @@ public class GoldenCarrotBlock extends Block {
     public static String getBlockName(){
         return "golden_carrot_block";
     }
+
+
 }

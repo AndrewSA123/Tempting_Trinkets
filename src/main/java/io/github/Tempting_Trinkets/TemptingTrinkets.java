@@ -3,6 +3,7 @@ package io.github.Tempting_Trinkets;
 import io.github.Tempting_Trinkets.block.ModBlocks;
 import io.github.Tempting_Trinkets.entity.client.CarrotWraithRenderer;
 import io.github.Tempting_Trinkets.item.client.TTItemRenderers;
+import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -26,6 +27,7 @@ import io.github.Tempting_Trinkets.entity.ModEntities;
 import io.github.Tempting_Trinkets.entity.client.SirenRenderer;
 import io.github.Tempting_Trinkets.item.ModItems;
 import io.github.Tempting_Trinkets.item.Tempting_TrinketsCreativeModeTab;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod(TemptingTrinkets.MODID)
 public class TemptingTrinkets
@@ -58,7 +60,6 @@ public class TemptingTrinkets
 
     }
 
-    // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if(event.getTab() == Tempting_TrinketsCreativeModeTab.Tempting_Trinkets_Tab.get()){
