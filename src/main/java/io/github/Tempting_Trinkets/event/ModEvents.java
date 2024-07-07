@@ -5,10 +5,11 @@ import io.github.Tempting_Trinkets.entity.ModEntities;
 import io.github.Tempting_Trinkets.entity.custom.CarrotWraith;
 import io.github.Tempting_Trinkets.entity.custom.Siren;
 import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
+import io.github.Tempting_Trinkets.util.ModBindings;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 
 @EventBusSubscriber(modid = TemptingTrinkets.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -22,5 +23,10 @@ public class ModEvents {
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(RingOfNeutralBuoyancyModel.LAYER_LOCATION, RingOfNeutralBuoyancyModel::createBodyLayer);
+    }
+
+    @SubscribeEvent
+    public static void registerBindings(RegisterKeyMappingsEvent event) {
+        event.register(ModBindings.RING_OF_FIRE_MAPPING);
     }
 }

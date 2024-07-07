@@ -1,9 +1,14 @@
 package io.github.Tempting_Trinkets.item.custom;
 
+import io.github.Tempting_Trinkets.util.ModBindings;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -18,20 +23,37 @@ public class RingOfFire extends Item implements ICurioItem {
         return 1;
     }
 
-    @Override
-    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
-        return true;
-    }
-
     public static String GetName() {
         return "ring_of_fire";
     }
 
-    //TODO: Below is the code for spawning a blaze fireball, use this with a hotkey while the ring of fire is
-    //TODO: equipped to fire at the target, potentially look into some form of cooldown system for it.
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        createFireBall(pPlayer);
+        return super.use(pLevel, pPlayer, pUsedHand);
+    }
 
-//    Vec3 vec3 = new Vec3(this.blaze.getRandom().triangle(d1, 2.297 * d4), d2, this.blaze.getRandom().triangle(d3, 2.297 * d4));
-//    SmallFireball smallfireball = new SmallFireball(this.blaze.level(), this.blaze, vec3.normalize());
-//    smallfireball.setPos(smallfireball.getX(), this.blaze.getY(0.5) + 0.5, smallfireball.getZ());
-//    this.blaze.level().addFreshEntity(smallfireball);
+    //Curio Stuff
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        if(slotContext.entity() instanceof Player player){
+            if(ModBindings.RING_OF_FIRE_MAPPING.consumeClick()) {
+                createFireBall(player);
+            }
+        }
+    }
+
+    public void createFireBall(Player entity){
+        if(!entity.getCooldowns().isOnCooldown(this)){
+            SmallFireball smallfireball = new SmallFireball(entity.level(), entity, entity.getLookAngle().normalize());
+            smallfireball.setPos(smallfireball.getX(), entity.getY(0.5) + 0.5, smallfireball.getZ());
+            entity.level().addFreshEntity(smallfireball);
+            entity.getCooldowns().addCooldown(this, 40);
+        }
+    }
 }

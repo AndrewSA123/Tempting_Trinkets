@@ -33,6 +33,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class TemptingTrinkets
 {
     public static final String MODID = "tempting_trinkets";
+    public static final String KEYCATEGORY = "key.catagories.tempting_trinkets.bindings";
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
