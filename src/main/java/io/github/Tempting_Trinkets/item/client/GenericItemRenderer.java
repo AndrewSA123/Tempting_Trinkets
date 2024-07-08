@@ -23,10 +23,10 @@ public class GenericItemRenderer<R extends EntityModel> implements ICurioRendere
 
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        //TODO: Fix the pPackedOverlay variable causing weird colour issues.
         matrixStack.pushPose();
-
         VertexConsumer vertexBuilder = renderTypeBuffer.getBuffer(RenderType.entityCutout(resourceLocation));
-        model.renderToBuffer(matrixStack, vertexBuilder,1,1,1);
+        model.renderToBuffer(matrixStack, vertexBuilder, light, 0,1);
         matrixStack.popPose();
     }
 }
