@@ -15,12 +15,9 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 public class RingOfFire extends Item implements ICurioItem {
 
     public RingOfFire() {
-        super(new Item.Properties());
-    }
-
-    @Override
-    public int getMaxStackSize(ItemStack stack) {
-        return 1;
+        super(new Item.Properties()
+                .stacksTo(1)
+                .fireResistant());
     }
 
     public static String GetName() {
@@ -30,7 +27,7 @@ public class RingOfFire extends Item implements ICurioItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         createFireBall(pPlayer);
-        return super.use(pLevel, pPlayer, pUsedHand);
+        return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
     }
 
     //Curio Stuff
@@ -44,6 +41,10 @@ public class RingOfFire extends Item implements ICurioItem {
         if(slotContext.entity() instanceof Player player){
             if(ModBindings.RING_OF_FIRE_MAPPING.consumeClick()) {
                 createFireBall(player);
+            }
+
+            if(player.isOnFire()){
+                player.setRemainingFireTicks(0);
             }
         }
     }
