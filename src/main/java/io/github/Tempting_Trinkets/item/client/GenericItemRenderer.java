@@ -26,7 +26,7 @@ public class GenericItemRenderer<R extends EntityModel> implements ICurioRendere
         //TODO: Fix the pPackedOverlay variable causing weird colour issues.
         matrixStack.pushPose();
         VertexConsumer vertexBuilder = renderTypeBuffer.getBuffer(RenderType.entityCutout(resourceLocation));
-        model.renderToBuffer(matrixStack, vertexBuilder, light, 0,1);
+        model.renderToBuffer(matrixStack, vertexBuilder, light, 0);
         matrixStack.popPose();
     }
 }
