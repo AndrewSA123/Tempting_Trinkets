@@ -29,13 +29,13 @@ description='''${mod_description}'''
 [[dependencies.${mod_id}]] #optional
     modId="geckolib" #mandatory
     type="required" #mandatory
-    versionRange="[4.4.4,)" #mandatory
+    versionRange="[5.5.7,)" #mandatory
     ordering="NONE"
     side="BOTH"
 [[dependencies.${mod_id}]] #optional
     modId="curios" #mandatory
     type="required" #mandatory
-    versionRange="[9.0.2+1.21.0,)" #mandatory
+    versionRange="[16.0.0+26.2,)" #mandatory
     ordering="NONE"
     side="BOTH"
 # Here's another dependency
