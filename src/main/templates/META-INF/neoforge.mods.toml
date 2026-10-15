@@ -35,7 +35,7 @@ description='''${mod_description}'''
 [[dependencies.${mod_id}]] #optional
     modId="curios" #mandatory
     type="required" #mandatory
-    versionRange="[16.0.0+26.2,)" #mandatory
+    versionRange="[17.0.0-beta.2+26.3,)" #mandatory
     ordering="NONE"
     side="BOTH"
 # Here's another dependency

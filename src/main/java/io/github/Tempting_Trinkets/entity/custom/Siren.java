@@ -12,21 +12,26 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
-import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.animal.IronGolem;
-import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.feline.Cat;
+import net.minecraft.world.entity.animal.golem.IronGolem;
+import net.minecraft.world.entity.animal.wolf.Wolf;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.npc.villager.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.animatable.GeoAnimatable;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
+import com.geckolib.animatable.GeoAnimatable;
+import com.geckolib.animatable.GeoEntity;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import com.geckolib.animatable.manager.AnimatableManager;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.animation.object.LoopType;
+import com.geckolib.animation.object.PlayState;
+import com.geckolib.animation.state.AnimationTest;
 
 public class Siren extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache =  new SingletonAnimatableInstanceCache(this);
@@ -74,7 +79,7 @@ public class Siren extends Monster implements GeoEntity {
     }
     @Override
     public void travel(Vec3 pTravelVector) {
-        if (this.isControlledByLocalInstance() && this.isInWater() && this.wantsToSwim()) {
+        if (this.isLocalInstanceAuthoritative() && this.isInWater() && this.wantsToSwim()) {
             this.moveRelative(0.01F, pTravelVector);
             this.move(MoverType.SELF, this.getDeltaMovement());
             this.setDeltaMovement(this.getDeltaMovement().scale(0.9D));
@@ -100,20 +105,20 @@ public class Siren extends Monster implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllerRegistrar.add(new AnimationController<>("controller", 0, this::predicate));
     }
 
-    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+    private <T extends GeoAnimatable> PlayState predicate(AnimationTest<T> tAnimationState) {
         if(this.isSwimming()){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.siren.swim", Animation.LoopType.LOOP));
+            tAnimationState.controller().setAnimation(RawAnimation.begin().then("animation.siren.swim", LoopType.LOOP));
         }
 
         if(tAnimationState.isMoving()){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.siren.walk", Animation.LoopType.LOOP));
+            tAnimationState.controller().setAnimation(RawAnimation.begin().then("animation.siren.walk", LoopType.LOOP));
             return PlayState.CONTINUE;
         }
 
-        tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.siren.idle", Animation.LoopType.LOOP));
+        tAnimationState.controller().setAnimation(RawAnimation.begin().then("animation.siren.idle", LoopType.LOOP));
         return PlayState.CONTINUE;
     }
 
@@ -124,7 +129,7 @@ public class Siren extends Monster implements GeoEntity {
 
     @Override
     public void updateSwimming() {
-        if (!this.level().isClientSide) {
+        if (!this.level().isClientSide()) {
             if (this.isEffectiveAi() && this.isInWater() && this.wantsToSwim()) {
                 this.navigation = this.waterNavigation;
                 this.setSwimming(true);
@@ -147,7 +152,7 @@ public class Siren extends Monster implements GeoEntity {
 
         @Override
         public boolean canUse() {
-            return super.canUse() && !this._siren.level().isDay() && this._siren.isInWater();
+            return super.canUse() && this._siren.level().isDarkOutside() && this._siren.isInWater();
         }
 
         @Override

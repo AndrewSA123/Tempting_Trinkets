@@ -1,5 +1,6 @@
 package io.github.Tempting_Trinkets.entity.custom;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -8,20 +9,25 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.npc.villager.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib.animatable.GeoAnimatable;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
+import com.geckolib.animatable.GeoAnimatable;
+import com.geckolib.animatable.GeoEntity;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import com.geckolib.animatable.manager.AnimatableManager;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.animation.object.LoopType;
+import com.geckolib.animation.object.PlayState;
+import com.geckolib.animation.state.AnimationTest;
 
 public class CarrotWraith extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    private final AnimationController<GeoAnimatable> animationController = new AnimationController<>(this, "controller", 0, this::predicate);
+    private final AnimationController<GeoAnimatable> animationController = new AnimationController<>("controller", 0, this::predicate);
 
     public CarrotWraith(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -42,10 +48,12 @@ public class CarrotWraith extends Monster implements GeoEntity {
     }
 
     @Override
-    public boolean doHurtTarget(Entity pEntity) {
-        animationController.setAnimation(RawAnimation.begin().then("animation.carrot_wraith.attack", Animation.LoopType.PLAY_ONCE));
-        return super.doHurtTarget(pEntity);
+    public boolean doHurtTarget(ServerLevel pLevel, Entity pEntity) {
+        animationController.setAnimation(RawAnimation.begin().then("animation.carrot_wraith.attack", LoopType.PLAY_ONCE));
+        return super.doHurtTarget(pLevel, pEntity);
     }
+
+
 
     @Override
     protected void registerGoals() {
@@ -63,13 +71,13 @@ public class CarrotWraith extends Monster implements GeoEntity {
         controllers.add(animationController);
     }
 
-    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+    private <T extends GeoAnimatable> PlayState predicate(AnimationTest<T> tAnimationState) {
         if(tAnimationState.isMoving()){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.carrot_wraith.walking", Animation.LoopType.LOOP));
+            tAnimationState.controller().setAnimation(RawAnimation.begin().then("animation.carrot_wraith.walking", LoopType.LOOP));
             return PlayState.CONTINUE;
         }
 
-        tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.carrot_wraith.idle", Animation.LoopType.LOOP));
+        tAnimationState.controller().setAnimation(RawAnimation.begin().then("animation.carrot_wraith.idle", LoopType.LOOP));
         return PlayState.CONTINUE;
     }
 

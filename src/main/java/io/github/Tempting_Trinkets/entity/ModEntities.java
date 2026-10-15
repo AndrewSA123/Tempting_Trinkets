@@ -4,7 +4,8 @@ import io.github.Tempting_Trinkets.TemptingTrinkets;
 import io.github.Tempting_Trinkets.entity.custom.CarrotWraith;
 import io.github.Tempting_Trinkets.entity.custom.Siren;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.neoforged.bus.api.IEventBus;
@@ -19,12 +20,12 @@ public class ModEntities {
     public static final Supplier<EntityType<Siren>> SIREN = ENTITY_TYPES.register(Siren.getEntityName(),
             () -> EntityType.Builder.of(Siren::new, MobCategory.WATER_CREATURE)
                     .sized(1f, 1f)
-                    .build(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, Siren.getEntityName()).toString()));
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, Siren.getEntityName()))));
 
     public static final Supplier<EntityType<CarrotWraith>> CARROT_WRAITH = ENTITY_TYPES.register(CarrotWraith.getEntityName(),
             () -> EntityType.Builder.of(CarrotWraith::new, MobCategory.MONSTER)
                     .sized(2f, 2.5f)
-                    .build(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, CarrotWraith.getEntityName()).toString()));
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, CarrotWraith.getEntityName()))));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);
