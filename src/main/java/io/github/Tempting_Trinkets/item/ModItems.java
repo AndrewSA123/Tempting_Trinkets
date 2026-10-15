@@ -5,27 +5,28 @@ import io.github.Tempting_Trinkets.entity.ModEntities;
 import io.github.Tempting_Trinkets.item.custom.RingOfFire;
 import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
 public class ModItems {
+    // was DeferredRegister<Item>; registerItem only exists on DeferredRegister.Items
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TemptingTrinkets.MODID);
 
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.createItems(TemptingTrinkets.MODID);
+    public static final DeferredItem<Item> Ring_Of_Neutral_Buoyancy = ITEMS.registerItem(
+            RingOfNeutralBuoyancy.GetName(), RingOfNeutralBuoyancy::new);
 
-    public static final Supplier<Item> Ring_Of_Neutral_Buoyancy = ITEMS.register(RingOfNeutralBuoyancy.GetName(),
-            RingOfNeutralBuoyancy::new);
+    public static final DeferredItem<Item> Ring_Of_Fire = ITEMS.registerItem(
+            RingOfFire.GetName(), RingOfFire::new);
 
-    public static final Supplier<Item> Ring_Of_Fire = ITEMS.register(RingOfFire.GetName(),
-            RingOfFire::new);
+    public static final DeferredItem<Item> SIREN_SPAWN_EGG = ITEMS.registerItem("siren_spawn_egg",
+            props -> new SpawnEggItem(props.spawnEgg(ModEntities.SIREN.get())));
 
-    public static final Supplier<Item> SIREN_SPAWN_EGG = ITEMS.register("siren_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntities.SIREN, 0x1e1d1f, 0xf7f2fc, new Item.Properties()));
-
-    public static final Supplier<Item> CARROT_WRAITH_SPAWN_EGG = ITEMS.register("carrot_wraith_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntities.CARROT_WRAITH, 0xc48b00, 0x9d6f00, new Item.Properties()));
+    public static final DeferredItem<Item> CARROT_WRAITH_SPAWN_EGG = ITEMS.registerItem("carrot_wraith_spawn_egg",
+            props -> new SpawnEggItem(props.spawnEgg(ModEntities.CARROT_WRAITH.get())));
 
     public static void register(IEventBus bus){
         ITEMS.register(bus);

@@ -2,15 +2,16 @@ package io.github.Tempting_Trinkets;
 
 import io.github.Tempting_Trinkets.block.ModBlocks;
 import io.github.Tempting_Trinkets.entity.client.CarrotWraithRenderer;
+import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
 import io.github.Tempting_Trinkets.item.client.TTItemRenderers;
-import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
-import net.minecraft.client.renderer.entity.EntityRenderers;
+import io.github.Tempting_Trinkets.util.ModBindings;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -27,7 +28,6 @@ import io.github.Tempting_Trinkets.entity.ModEntities;
 import io.github.Tempting_Trinkets.entity.client.SirenRenderer;
 import io.github.Tempting_Trinkets.item.ModItems;
 import io.github.Tempting_Trinkets.item.Tempting_TrinketsCreativeModeTab;
-import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod(TemptingTrinkets.MODID)
 public class TemptingTrinkets
@@ -53,7 +53,7 @@ public class TemptingTrinkets
 
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.LOCAL, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -78,7 +78,7 @@ public class TemptingTrinkets
         LOGGER.info("Tempting Trinkets Server Initialising");
     }
 
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MODID)
     public static class ClientModEvents
     {
         @SubscribeEvent
@@ -89,8 +89,22 @@ public class TemptingTrinkets
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
             TTItemRenderers.register();
-            EntityRenderers.register(ModEntities.SIREN.get(), SirenRenderer::new);
-            EntityRenderers.register(ModEntities.CARROT_WRAITH.get(), CarrotWraithRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
+            event.registerEntityRenderer(ModEntities.SIREN.get(), SirenRenderer::new);
+            event.registerEntityRenderer(ModEntities.CARROT_WRAITH.get(), CarrotWraithRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
+            event.registerLayerDefinition(RingOfNeutralBuoyancyModel.LAYER_LOCATION, RingOfNeutralBuoyancyModel::createBodyLayer);
+        }
+
+        @SubscribeEvent
+        public static void registerBindings(RegisterKeyMappingsEvent event) {
+            event.register(ModBindings.RING_OF_FIRE_MAPPING);
         }
     }
 }

@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TemptingTrinkets.MODID);
 
-    public static final Supplier<Block> GOLDEN_CARROT_BLOCK = registerBlock(GoldenCarrotBlock.getBlockName(),
+    public static final DeferredBlock<Block> GOLDEN_CARROT_BLOCK = registerBlock(GoldenCarrotBlock.getBlockName(),
             GoldenCarrotBlock::new,
             BlockBehaviour.Properties.of()
                     .destroyTime(5f)

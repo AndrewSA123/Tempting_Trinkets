@@ -9,16 +9,17 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 
-public class RingOfNeutralBuoyancyModel<T extends Entity> extends EntityModel<T> {
+public class RingOfNeutralBuoyancyModel<T extends Entity> extends EntityModel<LivingEntityRenderState> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/curios/" + RingOfNeutralBuoyancy.GetName() + ".png"), "main");
-	private final ModelPart Ring;
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
+			Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/curios/" + RingOfNeutralBuoyancy.GetName() + ".png"), "main");
 
 	public RingOfNeutralBuoyancyModel(ModelPart root) {
-		this.Ring = root.getChild("Ring");
+		super(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -31,15 +32,5 @@ public class RingOfNeutralBuoyancyModel<T extends Entity> extends EntityModel<T>
 		.texOffs(12, 0).addBox(-4.0F, -1.0F, 2.0F, 8.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 9.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 32, 32);
-	}
-
-	@Override
-	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int alpha) {
-		Ring.render(poseStack, vertexConsumer, packedLight, packedOverlay);
 	}
 }

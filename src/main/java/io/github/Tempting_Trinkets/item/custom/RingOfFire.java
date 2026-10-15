@@ -2,10 +2,10 @@ package io.github.Tempting_Trinkets.item.custom;
 
 import io.github.Tempting_Trinkets.util.ModBindings;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -14,8 +14,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class RingOfFire extends Item implements ICurioItem {
 
-    public RingOfFire() {
-        super(new Item.Properties()
+    public RingOfFire(Item.Properties properties) {
+        super(properties
                 .stacksTo(1)
                 .fireResistant());
     }
@@ -25,9 +25,9 @@ public class RingOfFire extends Item implements ICurioItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        createFireBall(pPlayer);
-        return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
+    public InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        createFireBall(pPlayer, pPlayer.getItemInHand(pUsedHand));
+        return InteractionResult.PASS;
     }
 
     //Curio Stuff
@@ -40,21 +40,20 @@ public class RingOfFire extends Item implements ICurioItem {
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if(slotContext.entity() instanceof Player player){
             if(ModBindings.RING_OF_FIRE_MAPPING.consumeClick()) {
-                createFireBall(player);
+                createFireBall(player, stack);
             }
-
             if(player.isOnFire()){
                 player.setRemainingFireTicks(0);
             }
         }
     }
 
-    public void createFireBall(Player entity){
-        if(!entity.getCooldowns().isOnCooldown(this)){
+    public void createFireBall(Player entity, ItemStack stack){
+        if(!entity.getCooldowns().isOnCooldown(stack)){
             SmallFireball smallfireball = new SmallFireball(entity.level(), entity, entity.getLookAngle().normalize());
             smallfireball.setPos(smallfireball.getX(), entity.getY(0.5) + 0.5, smallfireball.getZ());
             entity.level().addFreshEntity(smallfireball);
-            entity.getCooldowns().addCooldown(this, 40);
+            entity.getCooldowns().addCooldown(stack, 40);
         }
     }
 }

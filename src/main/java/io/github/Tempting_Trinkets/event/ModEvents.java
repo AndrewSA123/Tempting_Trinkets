@@ -12,21 +12,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 
-@EventBusSubscriber(modid = TemptingTrinkets.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TemptingTrinkets.MODID)
 public class ModEvents {
-    @SubscribeEvent
-    public static void eventAttributeEvent(EntityAttributeCreationEvent event){
-        event.put(ModEntities.SIREN.get(), Siren.setAttributes());
-        event.put(ModEntities.CARROT_WRAITH.get(), CarrotWraith.setAttributes());
-    }
 
-    @SubscribeEvent
-    public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
-        event.registerLayerDefinition(RingOfNeutralBuoyancyModel.LAYER_LOCATION, RingOfNeutralBuoyancyModel::createBodyLayer);
-    }
-
-    @SubscribeEvent
-    public static void registerBindings(RegisterKeyMappingsEvent event) {
-        event.register(ModBindings.RING_OF_FIRE_MAPPING);
-    }
 }
