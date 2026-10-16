@@ -1,9 +1,12 @@
 {
   "item.tempting_trinkets.ring_of_neutral_buoyancy" : "Ring Of Neutral Buoyancy",
   "item.tempting_trinkets.siren_spawn_egg" : "Siren Egg",
+  "entity.tempting_trinkets.siren": "Siren",
+  "entity.tempting_trinkets.carrot_wraith": "Carrot Wraith",
   "item.tempting_trinkets.ring_of_fire": "Ring Of Fire",
   "item.tempting_trinkets.carrot_wraith_spawn_egg": "Carrot Wraith Egg",
   "creativemodetab.tempting_trinkets_tab": "Tempting Trinkets",
   "block.tempting_trinkets.golden_carrot_block": "Golden Carrot Block",
-  "key.tempting_trinkets.ring_of_fire" : "Ring Of Fire"
+  "key.tempting_trinkets.ring_of_fire" : "Ring Of Fire",
+  "key.category.tempting_trinkets.bindings" : "Tempting Trinkets"
 }

@@ -7,9 +7,15 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.Objects;
@@ -31,20 +37,48 @@ public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
 
     @Override
     public InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        var creative_flight = pPlayer.getAttribute(CREATIVE_FLIGHT);
         ItemStack stack = pPlayer.getItemInHand(pHand);
-
-        if (creative_flight.getValue() > 0f) {
-            creative_flight.setBaseValue(0);
-            stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false);
-            pLevel.playLocalSound(pPlayer.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 1f, 1f, false);
-        } else {
-            creative_flight.setBaseValue(1);
-            stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
-            pLevel.playLocalSound(pPlayer.blockPosition(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1f, 1f, false);
-        }
-        pPlayer.onUpdateAbilities();
+        boolean activating = !Boolean.TRUE.equals(stack.get(DataComponents.ENCHANTMENT_GLINT_OVERRIDE));
+        stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, activating);
+        pLevel.playLocalSound(pPlayer.blockPosition(),
+                activating ? SoundEvents.PLAYER_LEVELUP : SoundEvents.EXPERIENCE_ORB_PICKUP,
+                SoundSource.PLAYERS, 1f, 1f, false);
         return InteractionResult.PASS;
+    }
+
+    public static boolean hasActiveRing(Player player) {
+        Inventory inventory = player.getInventory();
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (stack.getItem() instanceof RingOfNeutralBuoyancy
+                    && Boolean.TRUE.equals(stack.get(DataComponents.ENCHANTMENT_GLINT_OVERRIDE))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static final Identifier RING_FLIGHT_ID =
+            Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "ring_of_neutral_buoyancy_flight");
+
+    @SubscribeEvent
+    public static void playerTick(PlayerTickEvent.Post event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide()) return;   // the server decides; the attribute syncs to the client
+
+        AttributeInstance flight = player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT);
+        if (flight == null) return;
+
+        boolean shouldFly = RingOfNeutralBuoyancy.hasActiveRing(player);
+        boolean hasModifier = flight.hasModifier(RING_FLIGHT_ID);
+
+        if (shouldFly && !hasModifier) {
+            flight.addTransientModifier(new AttributeModifier(RING_FLIGHT_ID, 1.0, AttributeModifier.Operation.ADD_VALUE));
+            player.onUpdateAbilities();
+        } else if (!shouldFly && hasModifier) {
+            flight.removeModifier(RING_FLIGHT_ID);
+            player.onUpdateAbilities();
+        }
     }
 
     //Curios Stuff
