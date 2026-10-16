@@ -58,29 +58,6 @@ public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
         return false;
     }
 
-    private static final Identifier RING_FLIGHT_ID =
-            Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "ring_of_neutral_buoyancy_flight");
-
-    @SubscribeEvent
-    public static void playerTick(PlayerTickEvent.Post event) {
-        Player player = event.getEntity();
-        if (player.level().isClientSide()) return;   // the server decides; the attribute syncs to the client
-
-        AttributeInstance flight = player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT);
-        if (flight == null) return;
-
-        boolean shouldFly = RingOfNeutralBuoyancy.hasActiveRing(player);
-        boolean hasModifier = flight.hasModifier(RING_FLIGHT_ID);
-
-        if (shouldFly && !hasModifier) {
-            flight.addTransientModifier(new AttributeModifier(RING_FLIGHT_ID, 1.0, AttributeModifier.Operation.ADD_VALUE));
-            player.onUpdateAbilities();
-        } else if (!shouldFly && hasModifier) {
-            flight.removeModifier(RING_FLIGHT_ID);
-            player.onUpdateAbilities();
-        }
-    }
-
     //Curios Stuff
 
     @Override
