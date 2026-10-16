@@ -2,36 +2,17 @@
   "type": "minecraft:crafting_shapeless",
   "category": "building",
   "ingredients": [
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:golden_carrot"
-    }
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot",
+    "minecraft:golden_carrot"
   ],
   "result": {
-    "count": 1,
     "id": "tempting_trinkets:golden_carrot_block"
   }
 }

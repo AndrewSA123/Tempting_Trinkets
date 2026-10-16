@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tempting_trinkets:golden_carrot"
+        "recipes": "tempting_trinkets:golden_carrot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -1,10 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
-    {
-      "item": "tempting_trinkets:golden_carrot_block"
-    }
+    "tempting_trinkets:golden_carrot_block"
   ],
   "result": {
     "count": 9,

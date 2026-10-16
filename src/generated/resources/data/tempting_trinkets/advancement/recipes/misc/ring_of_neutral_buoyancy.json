@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tempting_trinkets:ring_of_neutral_buoyancy"
+        "recipes": "tempting_trinkets:ring_of_neutral_buoyancy"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
