@@ -30,11 +30,6 @@ public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
     }
 
     @Override
-    public int getMaxStackSize(ItemStack stack) {
-        return 1;
-    }
-
-    @Override
     public InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         var creative_flight = pPlayer.getAttribute(CREATIVE_FLIGHT);
         ItemStack stack = pPlayer.getItemInHand(pHand);

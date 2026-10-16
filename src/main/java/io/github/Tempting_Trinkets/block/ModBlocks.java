@@ -23,13 +23,14 @@ public class ModBlocks {
                     .lightLevel(value -> 3));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> func, BlockBehaviour.Properties props){
-        DeferredBlock<T> toReturn = BLOCKS.register(name, () -> func.apply(props));
+        DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, func, () -> props);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
-    private static <T extends Block>Supplier<Item> registerBlockItem(String name, DeferredBlock<T> block){
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <T extends Block> Supplier<Item> registerBlockItem(String name, DeferredBlock<T> block){
+        return ModItems.ITEMS.registerItem(name,
+                props -> new BlockItem(block.get(), props.useBlockDescriptionPrefix()));
     }
 
     public static void register(IEventBus event){

@@ -5,6 +5,7 @@ import io.github.Tempting_Trinkets.entity.client.CarrotWraithRenderer;
 import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
 import io.github.Tempting_Trinkets.item.client.TTItemRenderers;
 import io.github.Tempting_Trinkets.util.ModBindings;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import org.slf4j.Logger;
@@ -33,7 +34,6 @@ import io.github.Tempting_Trinkets.item.Tempting_TrinketsCreativeModeTab;
 public class TemptingTrinkets
 {
     public static final String MODID = "tempting_trinkets";
-    public static final String KEYCATEGORY = "key.categories.tempting_trinkets.bindings";
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
@@ -78,7 +78,7 @@ public class TemptingTrinkets
         LOGGER.info("Tempting Trinkets Server Initialising");
     }
 
-    @EventBusSubscriber(modid = MODID)
+    @EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
@@ -104,6 +104,8 @@ public class TemptingTrinkets
 
         @SubscribeEvent
         public static void registerBindings(RegisterKeyMappingsEvent event) {
+            event.register(ModBindings.RING_OF_FIRE_MAPPING);
+            event.registerCategory(ModBindings.CATEGORY);
             event.register(ModBindings.RING_OF_FIRE_MAPPING);
         }
     }
