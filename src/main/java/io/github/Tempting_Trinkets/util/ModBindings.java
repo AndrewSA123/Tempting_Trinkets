@@ -11,7 +11,7 @@ public class ModBindings {
 
     public static final KeyMapping RING_OF_FIRE_MAPPING = new KeyMapping(
             "key." + TemptingTrinkets.MODID + ".ring_of_fire",
-            InputConstants.KEY_G,
+            InputConstants.KEY_V,
             CATEGORY
     );
 }

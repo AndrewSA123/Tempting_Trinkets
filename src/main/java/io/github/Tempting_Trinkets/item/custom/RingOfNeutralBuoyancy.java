@@ -1,28 +1,20 @@
 package io.github.Tempting_Trinkets.item.custom;
 
 import io.github.Tempting_Trinkets.TemptingTrinkets;
+import io.github.Tempting_Trinkets.compat.curios.CuriosCompat;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.common.NeoForgeMod;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
-import java.util.Objects;
+import net.neoforged.fml.ModList;
 
-import static net.neoforged.neoforge.common.NeoForgeMod.CREATIVE_FLIGHT;
-
-public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
+public class RingOfNeutralBuoyancy extends Item {
     public RingOfNeutralBuoyancy(Item.Properties properties) {
         super(properties.stacksTo(1));
     }
@@ -46,38 +38,19 @@ public class RingOfNeutralBuoyancy extends Item implements ICurioItem {
         return InteractionResult.PASS;
     }
 
+    private static boolean isActive(ItemStack stack) {
+        return stack.getItem() instanceof RingOfNeutralBuoyancy
+                && Boolean.TRUE.equals(stack.get(DataComponents.ENCHANTMENT_GLINT_OVERRIDE));
+    }
+
     public static boolean hasActiveRing(Player player) {
         Inventory inventory = player.getInventory();
         for (int i = 0; i < inventory.getContainerSize(); i++) {
-            ItemStack stack = inventory.getItem(i);
-            if (stack.getItem() instanceof RingOfNeutralBuoyancy
-                    && Boolean.TRUE.equals(stack.get(DataComponents.ENCHANTMENT_GLINT_OVERRIDE))) {
+            if (isActive(inventory.getItem(i))) {
                 return true;
             }
         }
-        return false;
-    }
-
-    //Curios Stuff
-
-    @Override
-    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        if(slotContext.entity() instanceof Player player){
-            Objects.requireNonNull(player.getAttribute(CREATIVE_FLIGHT)).setBaseValue(1);
-            player.onUpdateAbilities();
-        }
-    }
-
-    @Override
-    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if(slotContext.entity() instanceof Player player){
-            Objects.requireNonNull(player.getAttribute(CREATIVE_FLIGHT)).setBaseValue(0);
-            player.onUpdateAbilities();
-        }
-    }
-
-    @Override
-    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
-        return false;
+        return ModList.get().isLoaded("curios")
+                && !CuriosCompat.findWorn(player, stack -> stack.getItem() instanceof RingOfNeutralBuoyancy).isEmpty();
     }
 }

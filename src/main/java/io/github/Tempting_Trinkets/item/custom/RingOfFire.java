@@ -1,18 +1,17 @@
 package io.github.Tempting_Trinkets.item.custom;
 
-import io.github.Tempting_Trinkets.util.ModBindings;
+import io.github.Tempting_Trinkets.compat.curios.CuriosCompat;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import net.neoforged.fml.ModList;
 
-public class RingOfFire extends Item implements ICurioItem {
+public class RingOfFire extends Item {
 
     public RingOfFire(Item.Properties properties) {
         super(properties
@@ -30,25 +29,27 @@ public class RingOfFire extends Item implements ICurioItem {
         return InteractionResult.PASS;
     }
 
-    //Curio Stuff
-    @Override
-    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
-        return false;
-    }
-
-    @Override
-    public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if(slotContext.entity() instanceof Player player){
-            if(ModBindings.RING_OF_FIRE_MAPPING.consumeClick()) {
-                createFireBall(player, stack);
-            }
-            if(player.isOnFire()){
-                player.setRemainingFireTicks(0);
+    public static ItemStack findRing(Player player) {
+        Inventory inventory = player.getInventory();
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (stack.getItem() instanceof RingOfFire) {
+                return stack;
             }
         }
+
+        if (ModList.get().isLoaded("curios")) {
+            return CuriosCompat.findWorn(player, stack -> stack.getItem() instanceof RingOfFire);
+        }
+        return ItemStack.EMPTY;   // B4 adds the Curios-slot lookup here
+    }
+
+    public static boolean hasRing(Player player) {
+        return !findRing(player).isEmpty();
     }
 
     public void createFireBall(Player entity, ItemStack stack){
+        if (entity.level().isClientSide()) return;   // the server spawns it; the cooldown syncs to the client
         if(!entity.getCooldowns().isOnCooldown(stack)){
             SmallFireball smallfireball = new SmallFireball(entity.level(), entity, entity.getLookAngle().normalize());
             smallfireball.setPos(smallfireball.getX(), entity.getY(0.5) + 0.5, smallfireball.getZ());

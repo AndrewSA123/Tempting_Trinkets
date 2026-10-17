@@ -1,4 +1,4 @@
-package io.github.Tempting_Trinkets.item.client;
+package io.github.Tempting_Trinkets.compat.curios;
 
 import io.github.Tempting_Trinkets.item.ModItems;
 import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;

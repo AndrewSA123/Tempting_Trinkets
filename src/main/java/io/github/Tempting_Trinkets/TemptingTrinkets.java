@@ -1,13 +1,18 @@
 package io.github.Tempting_Trinkets;
 
 import io.github.Tempting_Trinkets.block.ModBlocks;
+import io.github.Tempting_Trinkets.compat.curios.CuriosCompat;
 import io.github.Tempting_Trinkets.entity.client.CarrotWraithRenderer;
+import io.github.Tempting_Trinkets.compat.curios.TTItemRenderers;
 import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
-import io.github.Tempting_Trinkets.item.client.TTItemRenderers;
+import io.github.Tempting_Trinkets.network.FireballPayload;
 import io.github.Tempting_Trinkets.util.ModBindings;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -58,7 +63,9 @@ public class TemptingTrinkets
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        if (ModList.get().isLoaded("curios")) {
+            CuriosCompat.register();
+        }
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
@@ -88,7 +95,18 @@ public class TemptingTrinkets
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
-            TTItemRenderers.register();
+            if (ModList.get().isLoaded("curios")) {
+                TTItemRenderers.register();
+            }
+        }
+
+        @SubscribeEvent
+        public static void clientTick(ClientTickEvent.Post event) {
+            while (ModBindings.RING_OF_FIRE_MAPPING.consumeClick()) {
+                if (Minecraft.getInstance().player != null) {
+                    ClientPacketDistributor.sendToServer(FireballPayload.INSTANCE);
+                }
+            }
         }
 
         @SubscribeEvent

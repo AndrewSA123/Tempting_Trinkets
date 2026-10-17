@@ -1,4 +1,4 @@
-package io.github.Tempting_Trinkets.item.client;
+package io.github.Tempting_Trinkets.compat.curios;
 
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
