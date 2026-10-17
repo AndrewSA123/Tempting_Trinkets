@@ -9,7 +9,7 @@ import com.geckolib.renderer.base.GeoRenderState;
 public class SirenModel extends GeoModel<Siren> {
     @Override
     public Identifier getModelResource(GeoRenderState renderState) {
-        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "geo/siren.geo.json");
+        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "siren");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class SirenModel extends GeoModel<Siren> {
 
     @Override
     public Identifier getAnimationResource(Siren animatable) {
-        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "animations/siren.animation.json");
+        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "siren");
     }
 }

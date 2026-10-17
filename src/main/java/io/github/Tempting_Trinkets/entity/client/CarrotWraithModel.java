@@ -9,7 +9,7 @@ import com.geckolib.renderer.base.GeoRenderState;
 public class CarrotWraithModel extends GeoModel<CarrotWraith> {
     @Override
     public Identifier getModelResource(GeoRenderState renderState) {
-        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "geo/carrot_wraith.geo.json");
+        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "carrot_wraith");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class CarrotWraithModel extends GeoModel<CarrotWraith> {
 
     @Override
     public Identifier getAnimationResource(CarrotWraith animatable) {
-        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "animations/carrot_wraith.animation.json");
+        return Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "carrot_wraith");
     }
 }

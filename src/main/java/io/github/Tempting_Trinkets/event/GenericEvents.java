@@ -29,7 +29,7 @@ public class GenericEvents {
     @SubscribeEvent
     public static void playerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
-        if (player.level().isClientSide()) return;   // the server decides; the attribute syncs to the client
+        if (player.level().isClientSide()) return;
 
         AttributeInstance flight = player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT);
         if (flight == null) return;
