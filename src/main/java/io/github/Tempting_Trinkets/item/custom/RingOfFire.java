@@ -41,7 +41,7 @@ public class RingOfFire extends Item {
         if (ModList.get().isLoaded("curios")) {
             return CuriosCompat.findWorn(player, stack -> stack.getItem() instanceof RingOfFire);
         }
-        return ItemStack.EMPTY;   // B4 adds the Curios-slot lookup here
+        return ItemStack.EMPTY;
     }
 
     public static boolean hasRing(Player player) {
@@ -49,7 +49,7 @@ public class RingOfFire extends Item {
     }
 
     public void createFireBall(Player entity, ItemStack stack){
-        if (entity.level().isClientSide()) return;   // the server spawns it; the cooldown syncs to the client
+        if (entity.level().isClientSide()) return;
         if(!entity.getCooldowns().isOnCooldown(stack)){
             SmallFireball smallfireball = new SmallFireball(entity.level(), entity, entity.getLookAngle().normalize());
             smallfireball.setPos(smallfireball.getX(), entity.getY(0.5) + 0.5, smallfireball.getZ());

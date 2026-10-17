@@ -111,6 +111,7 @@ public class Siren extends Monster implements GeoEntity {
     private <T extends GeoAnimatable> PlayState predicate(AnimationTest<T> tAnimationState) {
         if(this.isSwimming()){
             tAnimationState.controller().setAnimation(RawAnimation.begin().then("animation.siren.swim", LoopType.LOOP));
+            return PlayState.CONTINUE;
         }
 
         if(tAnimationState.isMoving()){
