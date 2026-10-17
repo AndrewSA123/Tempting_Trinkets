@@ -23,7 +23,6 @@ public record FireballPayload() implements CustomPacketPayload {
         return TYPE;
     }
 
-    // runs on the server's main thread
     public static void handle(FireballPayload payload, IPayloadContext context) {
         Player player = context.player();
         ItemStack ring = RingOfFire.findRing(player);
