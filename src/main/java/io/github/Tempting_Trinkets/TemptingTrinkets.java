@@ -104,7 +104,6 @@ public class TemptingTrinkets
 
         @SubscribeEvent
         public static void registerBindings(RegisterKeyMappingsEvent event) {
-            event.register(ModBindings.RING_OF_FIRE_MAPPING);
             event.registerCategory(ModBindings.CATEGORY);
             event.register(ModBindings.RING_OF_FIRE_MAPPING);
         }
