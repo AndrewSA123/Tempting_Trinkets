@@ -14,7 +14,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 
 public class RingOfNeutralBuoyancyModel extends EntityModel<LivingEntityRenderState> {
-
+	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
 			Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/curios/" + RingOfNeutralBuoyancy.GetName() + ".png"), "main");
 
