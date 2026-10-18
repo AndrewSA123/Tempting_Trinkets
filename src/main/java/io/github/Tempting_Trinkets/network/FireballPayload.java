@@ -2,6 +2,7 @@ package io.github.Tempting_Trinkets.network;
 
 import io.github.Tempting_Trinkets.TemptingTrinkets;
 import io.github.Tempting_Trinkets.item.custom.RingOfFire;
+import io.github.Tempting_Trinkets.trinket.Trinkets;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -25,7 +26,7 @@ public record FireballPayload() implements CustomPacketPayload {
 
     public static void handle(FireballPayload payload, IPayloadContext context) {
         Player player = context.player();
-        ItemStack ring = RingOfFire.findRing(player);
+        ItemStack ring = Trinkets.find(player, RingOfFire.class);
         if (!ring.isEmpty()) {
             ((RingOfFire) ring.getItem()).createFireBall(player, ring);
         }

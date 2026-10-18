@@ -5,6 +5,7 @@ import io.github.Tempting_Trinkets.compat.curios.CuriosCompat;
 import io.github.Tempting_Trinkets.entity.client.CarrotWraithRenderer;
 import io.github.Tempting_Trinkets.compat.curios.TTItemRenderers;
 import io.github.Tempting_Trinkets.item.Models.RingOfNeutralBuoyancyModel;
+import io.github.Tempting_Trinkets.item.Models.TrinketModels;
 import io.github.Tempting_Trinkets.network.FireballPayload;
 import io.github.Tempting_Trinkets.util.ModBindings;
 import net.neoforged.api.distmarker.Dist;
@@ -109,7 +110,9 @@ public class TemptingTrinkets
 
         @SubscribeEvent
         public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
-            event.registerLayerDefinition(RingOfNeutralBuoyancyModel.LAYER_LOCATION, RingOfNeutralBuoyancyModel::createBodyLayer);
+            for (TrinketModels.Entry entry : TrinketModels.ALL) {
+                event.registerLayerDefinition(entry.layer(), entry.definition());
+            }
         }
 
         @SubscribeEvent

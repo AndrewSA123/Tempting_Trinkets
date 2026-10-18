@@ -4,6 +4,7 @@ import io.github.Tempting_Trinkets.TemptingTrinkets;
 import io.github.Tempting_Trinkets.entity.custom.Siren;
 import io.github.Tempting_Trinkets.item.custom.RingOfFire;
 import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
+import io.github.Tempting_Trinkets.trinket.Trinkets;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -37,7 +38,7 @@ public class GenericEvents {
         AttributeInstance flight = player.getAttribute(NeoForgeMod.CREATIVE_FLIGHT);
         if (flight == null) return;
 
-        boolean shouldFly = RingOfNeutralBuoyancy.hasActiveRing(player);
+        boolean shouldFly = Trinkets.hasActive(player, RingOfNeutralBuoyancy.class);
         boolean hasModifier = flight.hasModifier(RING_FLIGHT_ID);
 
         if (shouldFly && !hasModifier) {
@@ -53,7 +54,7 @@ public class GenericEvents {
     public static void fireImmunityTick(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
         if (player.level().isClientSide()) return;
-        if (player.isOnFire() && RingOfFire.hasRing(player)) {
+        if (player.isOnFire() && Trinkets.has(player, RingOfFire.class)) {
             player.setRemainingFireTicks(0);
         }
     }
@@ -62,7 +63,7 @@ public class GenericEvents {
     public static void fireImmunityDamage(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof Player player
                 && event.getSource().is(DamageTypeTags.IS_FIRE)
-                && RingOfFire.hasRing(player)) {
+                && Trinkets.has(player, RingOfFire.class)) {
             event.setCanceled(true);
         }
     }

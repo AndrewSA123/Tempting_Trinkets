@@ -1,6 +1,8 @@
 package io.github.Tempting_Trinkets.compat.curios;
 
 import io.github.Tempting_Trinkets.item.ModItems;
+import io.github.Tempting_Trinkets.trinket.Trinket;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -21,8 +23,9 @@ public final class CuriosCompat {
                 return false;
             }
         };
-        CuriosApi.registerCurio(ModItems.Ring_Of_Fire.get(), noEquipFromUse);
-        CuriosApi.registerCurio(ModItems.Ring_Of_Neutral_Buoyancy.get(), noEquipFromUse);
+        BuiltInRegistries.ITEM.stream()
+                .filter(item -> item instanceof Trinket)
+                .forEach(item -> CuriosApi.registerCurio(item, noEquipFromUse));
     }
 
     public static ItemStack findWorn(Player player, Predicate<ItemStack> filter) {
