@@ -1,7 +1,5 @@
 package io.github.Tempting_Trinkets.item.Models;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.github.Tempting_Trinkets.TemptingTrinkets;
 import io.github.Tempting_Trinkets.item.custom.RingOfNeutralBuoyancy;
 import net.minecraft.client.model.EntityModel;
@@ -11,10 +9,9 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.Entity;
 
 public class RingOfNeutralBuoyancyModel extends EntityModel<LivingEntityRenderState> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
 			Identifier.fromNamespaceAndPath(TemptingTrinkets.MODID, "textures/curios/" + RingOfNeutralBuoyancy.GetName() + ".png"), "main");
 

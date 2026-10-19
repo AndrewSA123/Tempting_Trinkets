@@ -10,10 +10,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Supplier;
-
 public class ModItems {
-    // was DeferredRegister<Item>; registerItem only exists on DeferredRegister.Items
+
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TemptingTrinkets.MODID);
 
     public static final DeferredItem<Item> Ring_Of_Neutral_Buoyancy = ITEMS.registerItem(

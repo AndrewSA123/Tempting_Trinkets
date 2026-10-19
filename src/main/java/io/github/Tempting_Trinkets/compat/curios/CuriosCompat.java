@@ -1,6 +1,5 @@
 package io.github.Tempting_Trinkets.compat.curios;
 
-import io.github.Tempting_Trinkets.item.ModItems;
 import io.github.Tempting_Trinkets.trinket.Trinket;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Player;
