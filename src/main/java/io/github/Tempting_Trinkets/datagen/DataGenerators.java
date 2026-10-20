@@ -1,6 +1,7 @@
 package io.github.Tempting_Trinkets.datagen;
 
 import io.github.Tempting_Trinkets.TemptingTrinkets;
+import io.github.Tempting_Trinkets.worldgen.ModChestLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -14,8 +15,9 @@ public class DataGenerators {
     public static void gatherRegistries(GatherDataRegistryEntriesEvent event) {
         event.gatherFor(TemptingTrinkets.MODID)
                 .recipe(ModRecipeProvider::new)
-                .lootTable(new LootTableProvider.SubProviderEntry(
-                        ModBlockLootTablesProvider::new, LootContextParamSets.BLOCK));
+                .lootTable(
+                        new LootTableProvider.SubProviderEntry(ModBlockLootTablesProvider::new, LootContextParamSets.BLOCK),
+                        new LootTableProvider.SubProviderEntry(context -> () -> ModChestLoot.generate(context), LootContextParamSets.CHEST));
     }
 
     @SubscribeEvent
@@ -23,5 +25,6 @@ public class DataGenerators {
         event.createProvider(ModModelProvider::new);
         event.createProvider(ModBlockTagGenerator::new);
         event.createProvider(ModItemTagGenerator::new);
+        event.createProvider(ModStructureProvider::new);
     }
 }
