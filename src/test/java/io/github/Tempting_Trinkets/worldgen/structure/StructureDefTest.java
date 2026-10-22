@@ -12,7 +12,13 @@ class StructureDefTest {
     private static StructureDef def(String name, int spacing, int separation) {
         return new StructureDef(name, List.of(new StructureDef.Piece("siren_rock", 1)), 1,
                 StructureDef.Step.SURFACE_STRUCTURES, StructureDef.Terrain.NONE,
-                StructureDef.Surface.OCEAN_FLOOR_WG, 0, List.of("c:is_beach"), spacing, separation);
+                StructureDef.Surface.OCEAN_FLOOR_WG, 0, List.of("c:is_beach"), spacing, separation, 0, 0);   // changed: added 0, 0
+    }
+
+    private static StructureDef water(int min, int max) {
+        return new StructureDef("siren_rock", List.of(new StructureDef.Piece("siren_rock", 1)), 1,
+                StructureDef.Step.SURFACE_STRUCTURES, StructureDef.Terrain.NONE,
+                StructureDef.Surface.OCEAN_FLOOR_WG, -4, List.of("minecraft:ocean"), 20, 6, min, max);
     }
 
     @Test
@@ -34,5 +40,9 @@ class StructureDefTest {
             }
         }
     }
+
+    // new
+    @Test void validWaterGatePasses() { assertDoesNotThrow(water(2, 7)::validate); }
+    @Test void waterDepthBoundsMustBeOrdered() { assertThrows(IllegalArgumentException.class, water(7, 2)::validate); }
+    @Test void waterGateNeedsAtLeastOneBlockOfWater() { assertThrows(IllegalArgumentException.class, water(0, 7)::validate); }
 }
-// imports: org.junit.jupiter.api.Test, static org.junit.jupiter.api.Assertions.*, java.nio.file.*, java.util.List

@@ -21,6 +21,7 @@ public final class ModChestLoot {
                 .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(Items.GOLDEN_CARROT))
                         .add(LootItem.lootTableItem(Items.GOLD_NUGGET))
-                        .add(LootItem.lootTableItem(Items.PRISMARINE_SHARD))));
+                        .add(LootItem.lootTableItem(Items.PRISMARINE_SHARD))
+                        .add(LootItem.lootTableItem(Items.HEART_OF_THE_SEA))));
     }
 }

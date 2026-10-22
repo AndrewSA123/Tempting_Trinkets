@@ -29,7 +29,7 @@ public final class StructureJson {
 
     public static JsonObject structure(StructureDef def) {
         JsonObject json = new JsonObject();
-        json.addProperty("type", "minecraft:jigsaw");
+        json.addProperty("type", def.inWater() ? TemptingTrinkets.MODID + ":water_jigsaw" : "minecraft:jigsaw");
         json.addProperty("biomes", "#" + TemptingTrinkets.MODID + ":has_structure/" + def.name());
         json.addProperty("step", def.step().name().toLowerCase());
         json.add("spawn_overrides", new JsonObject());
@@ -42,6 +42,11 @@ public final class StructureJson {
         json.addProperty("project_start_to_heightmap", def.surface().name());
         json.addProperty("max_distance_from_center", 80);
         json.addProperty("use_expansion_hack", false);
+        if (def.inWater()) {
+            json.addProperty("min_water_depth", def.minWaterDepth());
+            json.addProperty("max_water_depth", def.maxWaterDepth());
+        }
+
         return json;
     }
 

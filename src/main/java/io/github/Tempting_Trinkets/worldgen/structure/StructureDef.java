@@ -6,12 +6,13 @@ import java.util.Set;
 
 public record StructureDef(String name, List<Piece> pieces, int jigsawDepth, Step step, Terrain terrain,
                            Surface surface, int heightOffset, List<String> biomeSeeds,
-                           int spacing, int separation) {
+                           int spacing, int separation, int minWaterDepth, int maxWaterDepth) {
 
     public record Piece(String template, int weight) {}
     public enum Step { SURFACE_STRUCTURES, UNDERGROUND_STRUCTURES }
     public enum Terrain { NONE, BEARD_THIN }
     public enum Surface { WORLD_SURFACE_WG, OCEAN_FLOOR_WG }
+    public boolean inWater() { return maxWaterDepth > 0; }
 
     private static final String PATH = "[a-z0-9_]+(/[a-z0-9_]+)*";
 
@@ -33,6 +34,8 @@ public record StructureDef(String name, List<Piece> pieces, int jigsawDepth, Ste
             if (!seed.matches("#?[a-z0-9_.-]+:[a-z0-9_/.-]+")) throw new IllegalArgumentException(name + ": bad biome seed " + seed);
         }
         if (heightOffset < -64 || heightOffset > 64) throw new IllegalArgumentException(name + ": height offset out of range");
+        if (minWaterDepth < 0 || maxWaterDepth < minWaterDepth) throw new IllegalArgumentException(name + ": water depth must satisfy 0 <= min <= max");
+        if (inWater() && minWaterDepth < 1) throw new IllegalArgumentException(name + ": water depth min must be at least 1");
     }
 
     public static void validateAll(List<StructureDef> defs) {

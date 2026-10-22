@@ -7,6 +7,7 @@ import io.github.Tempting_Trinkets.compat.curios.TTItemRenderers;
 import io.github.Tempting_Trinkets.item.Models.TrinketModels;
 import io.github.Tempting_Trinkets.network.FireballPayload;
 import io.github.Tempting_Trinkets.util.ModBindings;
+import io.github.Tempting_Trinkets.worldgen.structure.ModStructureTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
@@ -44,6 +45,7 @@ public class TemptingTrinkets
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModStructureTypes.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
 
         NeoForge.EVENT_BUS.register(this);
