@@ -1,7 +1,6 @@
 package io.github.Tempting_Trinkets.datagen;
 
 import io.github.Tempting_Trinkets.TemptingTrinkets;
-import io.github.Tempting_Trinkets.worldgen.ModChestLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.fml.common.EventBusSubscriber;
