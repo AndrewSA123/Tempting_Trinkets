@@ -1,11 +1,11 @@
-// 26.3	2026-10-20T20:32:29.3031461	Registries for Reloadable (tempting_trinkets[1]): [tempting_trinkets]
+// 26.3	2026-10-22T23:27:40.5574325	Registries for Reloadable (tempting_trinkets[1]): [tempting_trinkets]
 478c89e1a8bf1a9e6891f7d9ef44882ea5c2c235 data/tempting_trinkets/advancement/recipes/building_blocks/golden_carrot_block.json
 db3667de9463ab1d346e519cf5ed7ee253e29f87 data/tempting_trinkets/advancement/recipes/food/golden_carrot.json
 f36b114363cf879cc5cdc3560061f73c5a1eba9a data/tempting_trinkets/advancement/recipes/food/golden_carrot_from_block.json
 a3143b6f5ff3582e230b2a3c72b8398fe828b421 data/tempting_trinkets/advancement/recipes/misc/ring_of_fire.json
 f25dd9c88007b8a45954f9b8808688895e3fe7a4 data/tempting_trinkets/advancement/recipes/misc/ring_of_neutral_buoyancy.json
 1d40cb02033d6794d484414012e465fb34a10dbb data/tempting_trinkets/loot_table/blocks/golden_carrot_block.json
-1a210b57298a14c2ae92c5035b51ddbf87339ad4 data/tempting_trinkets/loot_table/chests/siren_rock.json
+18f0aed895f4f331970f462a10822430f9752e43 data/tempting_trinkets/loot_table/chests/siren_rock.json
 fd376db2279f57bd145fcf1046b676a1fa2ccfd6 data/tempting_trinkets/recipe/golden_carrot.json
 ca68022dabd9e41bceba433c41d1fcc1ef58a50b data/tempting_trinkets/recipe/golden_carrot_block.json
 f1b476a8b69f004e363300ccf40e9ac584c414ab data/tempting_trinkets/recipe/golden_carrot_from_block.json
